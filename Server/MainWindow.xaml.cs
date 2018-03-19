@@ -30,7 +30,7 @@ namespace Server
             InitializeComponent();
             MySqlConnection conn = new MySqlConnection(myConnectionString);
             MySqlCommand cmd = new MySqlCommand();
-            cmd.CommandText = "INSERT INTO tblLog (Melding) VALUES ('Test')";
+            cmd.CommandText = "INSERT INTO tblLog (Melding) VALUES ('testttt')";
             conn.Open();
             cmd.Connection = conn;
             cmd.ExecuteNonQuery();
