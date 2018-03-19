@@ -31,7 +31,7 @@ namespace Server
             MySqlConnection conn = new MySqlConnection(myConnectionString);
             MySqlCommand cmd = new MySqlCommand();
             cmd.CommandText = "INSERT INTO tblLog (Melding) VALUES ('fag')";
-            cmd.CommandText = "INSERT INTO tblLog (Melding) VALUES ('azertyuiopoiuytreza')";
+            cmd.CommandText = "INSERT INTO tblLog (Melding) VALUES ('SlikkeSlet')";
             conn.Open();
             cmd.Connection = conn;
             cmd.ExecuteNonQuery();
