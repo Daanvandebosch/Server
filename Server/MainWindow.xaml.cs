@@ -24,7 +24,6 @@ namespace Server
     /// </summary>
     public partial class MainWindow : Window
     {
-        string myConnectionString = "server=localhost;uid=root;pwd=bobeke;database=mydb";
         public MainWindow()
         {
             InitializeComponent();
@@ -33,10 +32,7 @@ namespace Server
             cmd.CommandText = "INSERT INTO tblLog (Melding) VALUES ('Luca is wel gay')";
             conn.Open();
             cmd.Connection = conn;
-            while (true)
-            {
-                cmd.ExecuteNonQuery();
-            }
+            cmd.ExecuteNonQuery();
             conn.Close();
         }
     }
