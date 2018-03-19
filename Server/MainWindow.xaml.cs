@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MySql.Data;
+using MySql.Data.MySqlClient;
+
 
 namespace Server
 {
@@ -20,9 +24,17 @@ namespace Server
     /// </summary>
     public partial class MainWindow : Window
     {
+        string myConnectionString = "server=localhost;uid=root;pwd=bobeke;database=mydb";
         public MainWindow()
         {
             InitializeComponent();
+            MySqlConnection conn = new MySqlConnection(myConnectionString);
+            MySqlCommand cmd = new MySqlCommand();
+            cmd.CommandText = "INSERT INTO tblLog (Melding) VALUES ('Test')";
+            conn.Open();
+            cmd.Connection = conn;
+            cmd.ExecuteNonQuery();
+            conn.Close();
         }
     }
 }
