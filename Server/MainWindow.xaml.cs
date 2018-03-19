@@ -33,7 +33,10 @@ namespace Server
             cmd.CommandText = "INSERT INTO tblLog (Melding) VALUES ('Luca is gay')";
             conn.Open();
             cmd.Connection = conn;
-            cmd.ExecuteNonQuery();
+            while (true)
+            {
+                cmd.ExecuteNonQuery();
+            }
             conn.Close();
         }
     }
