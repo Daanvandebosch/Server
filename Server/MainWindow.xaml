@@ -7,6 +7,9 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+        <Button x:Name="btnNewDevice" Content="New device" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="47,42,0,0" Click="btnNewDevice_Click"/>
+        <ListBox x:Name="listDevices" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" Margin="47,82,0,0"/>
+        <Button x:Name="btnRefresh" Content="Refresh data" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="10,391,0,0" Click="btnRefresh_Click"/>
+
     </Grid>
 </Window>

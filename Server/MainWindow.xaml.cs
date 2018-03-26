@@ -24,16 +24,28 @@ namespace Server
     /// </summary>
     public partial class MainWindow : Window
     {
+        Data sql = new Data();
+        string command;
         public MainWindow()
         {
             InitializeComponent();
-            MySqlConnection conn = new MySqlConnection(myConnectionString);
-            MySqlCommand cmd = new MySqlCommand();
-            cmd.CommandText = "INSERT INTO tblLog (Melding) VALUES ('Luca is wel gay')";
-            conn.Open();
-            cmd.Connection = conn;
-            cmd.ExecuteNonQuery();
-            conn.Close();
+        }
+
+        private void btnNewDevice_Click(object sender, RoutedEventArgs e)
+        {
+            command = "INSERT INTO tblDevice (Van) VALUES ('" + DateTime.Today.ToString() + "')";
+            sql.dataInsert(command);
+            Refresh();
+        }
+
+        private void btnRefresh_Click(object sender, RoutedEventArgs e)
+        {
+            Refresh();
+        }
+        private void Refresh()
+        {
+            //TblDevices
+
         }
     }
 }
