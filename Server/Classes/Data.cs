@@ -20,22 +20,21 @@ namespace Server
             cmd.Connection = conn;
         }
         //dataSelect with list<string[]> output
-        public List<List<string>> MultipledataSelect(string _command)
+        public List<List<string>> MultipledataSelect(string _command, int Aantalvars)
         {
             List<List<string>> outputList = new List<List<String>>();
             List<string> varList = new List<string>();
             cmd.CommandText = _command;
-            int varTeller = 0;
+            Aantalvars--;
             conn.Open();
             MySqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
             {
-                while(reader.GetValue(varTeller) != null)
+                for (int i = 0; i <= Aantalvars; i++)
                 {
-                    varList.Add(reader.GetValue(varTeller).ToString());
-                    varTeller++;
+                    varList.Add(reader.GetValue(i).ToString());
+                    string x = reader.GetValue(i).ToString();
                 }
-                varTeller = 0;
                 outputList.Add(varList);
             }
             conn.Close();

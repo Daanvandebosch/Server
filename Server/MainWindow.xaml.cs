@@ -45,7 +45,14 @@ namespace Server
         private void Refresh()
         {
             //TblDevices
-
+            command = "SELECT DeviceID FROM TblDevice";
+            List<List<string>> lis = sql.MultipledataSelect(command,1);
+            int i = 0;
+            foreach(List<string> s in lis)
+            {
+                listDevices.Items.Add(s[i]);
+                i++;
+            }
         }
     }
 }
