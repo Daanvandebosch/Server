@@ -30,29 +30,5 @@ namespace Server
         {
             InitializeComponent();
         }
-
-        private void btnNewDevice_Click(object sender, RoutedEventArgs e)
-        {
-            command = "INSERT INTO tblDevice (Van) VALUES ('" + DateTime.Today.ToString() + "')";
-            sql.dataInsert(command);
-            Refresh();
-        }
-
-        private void btnRefresh_Click(object sender, RoutedEventArgs e)
-        {
-            Refresh();
-        }
-        private void Refresh()
-        {
-            //TblDevices
-            command = "SELECT DeviceID FROM TblDevice";
-            List<List<string>> lis = sql.MultipledataSelect(command,1);
-            int i = 0;
-            foreach(List<string> s in lis)
-            {
-                listDevices.Items.Add(s[i]);
-                i++;
-            }
-        }
     }
 }
