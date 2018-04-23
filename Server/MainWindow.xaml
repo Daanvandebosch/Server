@@ -19,6 +19,7 @@
                     <MenuItem Header="_Exit" />
                 </MenuItem>
             </Menu>
+            <TextBox AcceptsReturn="True" Visibility="Hidden" />
         </DockPanel>
         <ListBox x:Name="listInstallaties" HorizontalAlignment="Left" Height="456" Margin="70,84,0,0" VerticalAlignment="Top" Width="373"/>
         <ComboBox x:Name="comboBoxAdd" HorizontalAlignment="Left" Margin="900,84,0,0" VerticalAlignment="Top" Width="146"/>
