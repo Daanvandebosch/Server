@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Server"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="600.322" Width="1184.747"
+        ResizeMode="NoResize">
     <Grid>
         <Button x:Name="btnNewDevice" Content="New device" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="47,42,0,0" Click="btnNewDevice_Click"/>
         <ListBox x:Name="listDevices" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" Margin="47,82,0,0"/>
