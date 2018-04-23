@@ -10,7 +10,7 @@ namespace Server
 {
     class Data
     {
-        private string myConnectionString = "server=localhost;uid=root;pwd=bobeke;database=mydb";
+        private string myConnectionString = "server=10.23.35.202;uid=root;pwd=bobeke;database=mydb";
         MySqlConnection conn;
         MySqlCommand cmd;
         public Data()
