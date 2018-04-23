@@ -10,7 +10,7 @@ namespace Server
 {
     class Data
     {
-        private string myConnectionString = "datasource =10.23.35.202; port=3306;username= root;password= bobeke;database=mydb";
+        private string myConnectionString = "datasource =10.11.51.22; port=3306;username= root;password= bobeke;database=mydb";
         MySqlConnection conn;
         MySqlCommand cmd;
         public Data()
