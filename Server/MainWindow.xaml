@@ -7,10 +7,21 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="720" Width="1280"
         ResizeMode="NoResize">
+
+
     <Grid>
-        <Button x:Name="btnNewDevice" Content="New device" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="47,42,0,0" Click="btnNewDevice_Click"/>
-        <ListBox x:Name="listDevices" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" Margin="47,82,0,0"/>
-        <Button x:Name="btnRefresh" Content="Refresh data" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="10,391,0,0" Click="btnRefresh_Click"/>
+
+        <DockPanel Grid.ColumnSpan="2" >
+            <Menu DockPanel.Dock="Top" Height="20" Background="#FFDFDFDF">
+                <MenuItem Header="_Select">
+                    <MenuItem Header="_Application"/>
+                    <MenuItem Header="_Treatment Info"/>
+                    <Separator />
+                    <MenuItem Header="_Exit" />
+                </MenuItem>
+            </Menu>
+            <TextBox AcceptsReturn="True" Visibility="Hidden" />
+        </DockPanel>
 
     </Grid>
 </Window>
