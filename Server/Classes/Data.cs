@@ -10,7 +10,7 @@ namespace Server
 {
     class Data
     {
-        private string myConnectionString = "datasource =10.11.51.22; port=3306;username= root;password= bobeke;database=mydb";
+        private string myConnectionString = string.Format("datasource ={0}; port=3306;username= {1};password= {2};database={3}", "server ip", "root", "bobeke", "mydb");
         MySqlConnection conn;
         MySqlCommand cmd;
         public Data()
