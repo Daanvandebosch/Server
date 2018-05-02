@@ -21,7 +21,7 @@
             <TextBox AcceptsReturn="True" Visibility="Hidden" />
         </DockPanel>
         <ListBox x:Name="ListInstallaties" HorizontalAlignment="Left" Height="456" Margin="70,84,0,0" VerticalAlignment="Top" Width="373"/>
-        <ComboBox x:Name="ComboAdd" HorizontalAlignment="Left" Margin="900,84,0,0" VerticalAlignment="Top" Width="146">
+        <ComboBox x:Name="ComboAdd" HorizontalAlignment="Left" Margin="900,84,0,0" VerticalAlignment="Top" Width="146" SelectionChanged="ComboAdd_SelectionChanged">
             <ComboBoxItem Content="Container"/>
             <ComboBoxItem Content="Device"/>
             <ComboBoxItem Content="Event"/>

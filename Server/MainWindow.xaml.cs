@@ -98,5 +98,10 @@ namespace Server
                 ListInstallaties.Items.Add(i);
             }
         }
+
+        private void ComboAdd_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
