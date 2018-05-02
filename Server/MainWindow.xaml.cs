@@ -67,9 +67,11 @@ namespace Server
         /// <summary>
         /// Update alle listboxen
         /// </summary>
-        private void updateLists()
+        private void UpdateLists()
         {
-
+            Data d = new Data();
+            d.DataSelect("select * from tblinstallatie");
+            MySqlDataReader reader = cmd
         }
     }
 }
