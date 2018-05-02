@@ -10,7 +10,7 @@ namespace Server
 {
     class Data
     {
-        private string myConnectionString = string.Format("datasource ={0}; port=3306;username= {1};password= {2};database={3}", "10.11.51.22", "root", "bobeke", "mydb");
+        private string myConnectionString = string.Format("datasource ={0}; port=3306;username= {1};password= {2};database={3}", "10.23.35.202", "root", "bobeke", "mydb");
         MySqlConnection conn;
         MySqlCommand cmd;
 
@@ -53,7 +53,7 @@ namespace Server
         //dataSelect with single string output
         public string DataSelect(string _command)
         {
-            string output;
+            dynamic output;
             cmd.CommandText = _command;
             conn.Open();
             output = cmd.ExecuteScalar().ToString();
