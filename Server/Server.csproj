@@ -86,6 +86,12 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\Container.cs" />
+    <Compile Include="Models\Device.cs" />
+    <Compile Include="Models\Events.cs" />
+    <Compile Include="Models\Installatie.cs" />
+    <Compile Include="Models\Log.cs" />
+    <Compile Include="Models\Persoon.cs" />
     <Compile Include="NewDevice.xaml.cs">
       <DependentUpon>NewDevice.xaml</DependentUpon>
     </Compile>
@@ -148,8 +154,6 @@
   <ItemGroup>
     <Resource Include="docs\MySqlCommand.xml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
