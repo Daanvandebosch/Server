@@ -56,11 +56,20 @@ namespace Server
                 Brush b = new SolidColorBrush(Colors.Green);
                 status.Fill = b;
             }
-            catch
+            catch (Exception ex)
             {
+                MessageBox.Show(ex.Message);
                 Brush b = new SolidColorBrush(Colors.Red);
                 status.Fill = b;
             }
+        }
+
+        /// <summary>
+        /// Update alle listboxen
+        /// </summary>
+        private void updateLists()
+        {
+
         }
     }
 }
