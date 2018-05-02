@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -13,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 using MySql.Data;
 using MySql.Data.MySqlClient;
 
@@ -26,18 +28,27 @@ namespace Server
     {
         Data sql;
         string command;
+        private DispatcherTimer tCheckConnectionDatabase = new DispatcherTimer();
 
         public MainWindow()
         {
             InitializeComponent();
-            Setup();
+            CheckConnectionDatabase();
+            tCheckConnectionDatabase.Interval = TimeSpan.FromMilliseconds(5000);
+            tCheckConnectionDatabase.Tick += tCheckConnectionDatabase_Tick;
+            tCheckConnectionDatabase.IsEnabled = true;
         }
+
+        private void tCheckConnectionDatabase_Tick(object sender, EventArgs e)
+        {
+            CheckConnectionDatabase();
+        }
+
         /// <summary>
         /// Setup voor database connectie en mainpage
         /// </summary>
-        private void Setup()
+        private void CheckConnectionDatabase()
         {
-            
             try
             {
                 sql = new Data();
