@@ -17,7 +17,7 @@ using System.Windows.Shapes;
 using System.Windows.Threading;
 using MySql.Data;
 using MySql.Data.MySqlClient;
-
+using Server.Models;
 
 namespace Server
 {
@@ -26,8 +26,8 @@ namespace Server
     /// </summary>
     public partial class MainWindow : Window
     {
+        private string myConnectionString = string.Format("datasource ={0}; port=3306;username= {1};password= {2};database={3}", "10.11.51.22", "root", "bobeke", "mydb");
         Data sql;
-        string command;
         private DispatcherTimer tCheckConnectionDatabase = new DispatcherTimer();
 
         public MainWindow()
@@ -37,6 +37,7 @@ namespace Server
             tCheckConnectionDatabase.Interval = TimeSpan.FromMilliseconds(5000);
             tCheckConnectionDatabase.Tick += tCheckConnectionDatabase_Tick;
             tCheckConnectionDatabase.IsEnabled = true;
+            UpdateLists();
         }
 
         private void tCheckConnectionDatabase_Tick(object sender, EventArgs e)
@@ -51,7 +52,7 @@ namespace Server
         {
             try
             {
-                sql = new Data();
+                sql = new Data(myConnectionString);
                 sql.ConnectionTest();
                 Brush b = new SolidColorBrush(Colors.Green);
                 status.Fill = b;
@@ -69,9 +70,33 @@ namespace Server
         /// </summary>
         private void UpdateLists()
         {
-            Data d = new Data();
-            d.DataSelect("select * from tblinstallatie");
-            MySqlDataReader reader = cmd
+            MySqlConnection conn = new MySqlConnection(myConnectionString);
+            MySqlCommand cmd = new MySqlCommand();
+            cmd.Connection = conn;
+            string command;
+
+            List<Installatie> listI = new List<Installatie>();
+
+            command = "select * from tblinstallatie";
+            cmd.CommandText = command;
+            conn.Open();
+            MySqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                Installatie i = new Installatie()
+                {
+                    InstallatieID = Convert.ToInt32(reader[0]),
+                    ContainerID = Convert.ToInt32(reader[1]),
+                    DeviceID = Convert.ToInt32(reader[2]),
+                    Van = Convert.ToDateTime(reader[3]),
+                    Tot = Convert.ToDateTime(reader[4]),
+                    EventID = Convert.ToInt32(reader[5]),
+                    Omschrijving = Convert.ToString(reader[6]),
+                    VerantwoordelijkeID = Convert.ToInt32(reader[7])
+                };
+                listI.Add(i);
+                ListInstallaties.Items.Add(i);
+            }
         }
     }
 }
