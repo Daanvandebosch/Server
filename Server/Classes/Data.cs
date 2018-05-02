@@ -20,9 +20,6 @@ namespace Server
             conn = new MySqlConnection(myConnectionString);
             cmd = new MySqlCommand();
             cmd.Connection = conn;
-
-            cmd.Connection = conn;
-            cmd.CommandText = "INSERT INTO tblinstallatie "
         }
 
         public void ConnectionTest()
