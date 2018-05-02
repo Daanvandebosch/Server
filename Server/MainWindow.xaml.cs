@@ -101,6 +101,8 @@ namespace Server
 
         private void ComboAdd_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            NewContainer newD = new NewContainer(myConnectionString);
+            newD.Show();
 
         }
     }
