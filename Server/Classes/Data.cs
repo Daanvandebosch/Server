@@ -10,15 +10,23 @@ namespace Server
 {
     class Data
     {
-        private string myConnectionString = string.Format("datasource ={0}; port=3306;username= {1};password= {2};database={3}", "server ip", "root", "bobeke", "mydb");
+        private string myConnectionString = string.Format("datasource ={0}; port=3306;username= {1};password= {2};database={3}", "10.23.35.202", "root", "bobeke", "mydb");
         MySqlConnection conn;
         MySqlCommand cmd;
+
         public Data()
         {
             conn = new MySqlConnection(myConnectionString);
             cmd = new MySqlCommand();
             cmd.Connection = conn;
         }
+
+        public void ConnectionTest()
+        {
+            conn.Open();
+            conn.Close();
+        }
+
         //dataSelect with list<string[]> output
         public List<List<string>> MultipledataSelect(string _command, int Aantalvars)
         {
@@ -41,8 +49,9 @@ namespace Server
             return outputList;
             
         }
+
         //dataSelect with single string output
-        public string dataSelect(string _command)
+        public string DataSelect(string _command)
         {
             string output;
             cmd.CommandText = _command;
@@ -52,19 +61,22 @@ namespace Server
             return output;
         }
 
-        public void dataUpdate(string _command)
+        public void DataUpdate(string _command)
         {
-            simpleExecute(_command);
+            SimpleExecute(_command);
         }
-        public void dataInsert(string _command)
+        
+        public void DataInsert(string _command)
         {
-            simpleExecute(_command);
+            SimpleExecute(_command);
         }
-        public void dataRemoce(string _command)
+
+        public void DataRemoce(string _command)
         {
-            simpleExecute(_command);
+            SimpleExecute(_command);
         }
-        private void simpleExecute(string _command)
+
+        private void SimpleExecute(string _command)
         {
             cmd.CommandText = _command;
             conn.Open();

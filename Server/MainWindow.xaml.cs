@@ -24,11 +24,32 @@ namespace Server
     /// </summary>
     public partial class MainWindow : Window
     {
-        Data sql = new Data();
+        Data sql;
         string command;
+
         public MainWindow()
         {
             InitializeComponent();
+            Setup();
+        }
+        /// <summary>
+        /// Setup voor database connectie en mainpage
+        /// </summary>
+        private void Setup()
+        {
+            
+            try
+            {
+                sql = new Data();
+                sql.ConnectionTest();
+                Brush b = new SolidColorBrush(Colors.Green);
+                status.Fill = b;
+            }
+            catch
+            {
+                Brush b = new SolidColorBrush(Colors.Red);
+                status.Fill = b;
+            }
         }
     }
 }

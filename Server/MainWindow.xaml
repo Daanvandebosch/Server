@@ -13,22 +13,21 @@
         <DockPanel >
             <Menu DockPanel.Dock="Top"  Height="20" Background="#FFDFDFDF">
                 <MenuItem Header="_Select">
-                    <MenuItem Header="_Application"/>
-                    <MenuItem Header="_Treatment Info"/>
+                    <MenuItem Header="_Test"/>
                     <Separator />
                     <MenuItem Header="_Exit" />
                 </MenuItem>
             </Menu>
             <TextBox AcceptsReturn="True" Visibility="Hidden" />
         </DockPanel>
-        <ListBox x:Name="listInstallaties" HorizontalAlignment="Left" Height="456" Margin="70,84,0,0" VerticalAlignment="Top" Width="373"/>
-        <ComboBox x:Name="comboBoxAdd" HorizontalAlignment="Left" Margin="900,84,0,0" VerticalAlignment="Top" Width="146"/>
-        <ListBox HorizontalAlignment="Left" Height="456" Margin="492,84,0,0" VerticalAlignment="Top" Width="372"/>
+        <ListBox x:Name="ListInstallaties" HorizontalAlignment="Left" Height="456" Margin="70,84,0,0" VerticalAlignment="Top" Width="373"/>
+        <ComboBox x:Name="ComboAdd" HorizontalAlignment="Left" Margin="900,84,0,0" VerticalAlignment="Top" Width="146"/>
+        <ListBox x:Name="ListData" HorizontalAlignment="Left" Height="456" Margin="492,84,0,0" VerticalAlignment="Top" Width="372"/>
         <Label Content="Installaties" HorizontalAlignment="Left" Margin="70,53,0,0" VerticalAlignment="Top"/>
-        <Button Content="Add" HorizontalAlignment="Left" Margin="70,561,0,0" VerticalAlignment="Top" Width="120" Height="40"/>
-        <Button Content="Add" HorizontalAlignment="Left" Margin="492,561,0,0" VerticalAlignment="Top" Width="120" Height="40"/>
-        <Label Content="Connection database" HorizontalAlignment="Left" Margin="1082,35,0,0" VerticalAlignment="Top"/>
-        <Ellipse Fill="#ff0000" HorizontalAlignment="Left" Height="12" Margin="1211,43,0,0" Stroke="Black" VerticalAlignment="Top" Width="12"/>
+        <Button x:Name="BtnAddInstallatie" Content="Add" HorizontalAlignment="Left" Margin="70,561,0,0" VerticalAlignment="Top" Width="120" Height="40"/>
+        <Button x:Name="btnAdd" Content="Add" HorizontalAlignment="Left" Margin="492,561,0,0" VerticalAlignment="Top" Width="120" Height="40"/>
+        <Label Content="Connection database" HorizontalAlignment="Left" Margin="1113,53,0,0" VerticalAlignment="Top"/>
+        <Ellipse x:Name="status" Fill="#ff0000" HorizontalAlignment="Left" Height="12" Margin="1242,61,0,0" Stroke="Black" VerticalAlignment="Top" Width="12"/>
         <Label Content="Dropdown Add box" HorizontalAlignment="Left" Margin="900,53,0,0" VerticalAlignment="Top"/>
 
     </Grid>
