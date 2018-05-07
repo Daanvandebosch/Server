@@ -19,9 +19,24 @@ namespace Server
     /// </summary>
     public partial class NewEvent : Window
     {
-        public NewEvent()
+        private string connectionstring;
+
+        public NewEvent(string connectionstring)
         {
+            this.connectionstring = connectionstring;
             InitializeComponent();
+        }
+
+        private void btnDone_Click(object sender, RoutedEventArgs e)
+        {
+            string query = "INSERT INTO tblevents (Naam, Locatie, ContactpersoonID, VerantwoordelijkID)";
+
+            query += " VALUES ('" + TextBoxNaam.Text + "', '" + TextBoxLocatie.Text + "', '" + ComboAddContactpersoonID.SelectedValue + "', '" + ComboAddVerantwoordelijkeID.SelectedValue + "')";
+
+            Data d = new Data(connectionstring);
+            d.DataInsert(query);
+
+            this.Close();
         }
     }
 }
