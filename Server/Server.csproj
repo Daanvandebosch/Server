@@ -88,6 +88,18 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="NewEvent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NewInstallatie.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NewPersoon.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\Container.cs" />
@@ -101,6 +113,15 @@
     </Compile>
     <Compile Include="NewDevice.xaml.cs">
       <DependentUpon>NewDevice.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NewEvent.xaml.cs">
+      <DependentUpon>NewEvent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NewInstallatie.xaml.cs">
+      <DependentUpon>NewInstallatie.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NewPersoon.xaml.cs">
+      <DependentUpon>NewPersoon.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
