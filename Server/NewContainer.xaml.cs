@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,8 +30,12 @@ namespace Server
 
         private void btnDone_Click(object sender, RoutedEventArgs e)
         {
+            string query = "INSERT INTO tblcontainer (Plaats, Van, Tot)";
+            //query += " VALUES (@Plaats, @Van, @Tot)";
+            query += " VALUES (" + TextBoxPlaats.Text + ", " + DatePickerVan.Text + ", " + DatePickerTot.Text + ")";
+
             Data d = new Data(connectionstring);
-            d.DataInsert("INSERT INTO COMMANDO");
+            d.DataInsert(query);
         }
     }
 }
