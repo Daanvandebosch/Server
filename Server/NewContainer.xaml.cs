@@ -31,7 +31,6 @@ namespace Server
 
         private void btnDone_Click(object sender, RoutedEventArgs e)
         {
-            var usCulture = "en-US";
             string query = "INSERT INTO tblcontainer (Plaats, Van, Tot)";
             query += " VALUES ('" + TextBoxPlaats.Text + "', '" + DateTime.Parse(DatePickerVan.Text).ToString("yyyy-MM-dd HH:mm:ss") + "', '" + DateTime.Parse(DatePickerTot.Text).ToString("yyyy-MM-dd HH:mm:ss") + "')";
 

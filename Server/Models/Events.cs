@@ -13,6 +13,5 @@ namespace Server.Models
         public string Locatie { get; set; }
         public int ContactpersoonID { get; set; }
         public int VerantwoordelijkeID { get; set; }
-        public string EventNaam { get; set; }
     }
 }

@@ -179,53 +179,57 @@ namespace Server
                     }
                     break;
                 case "Persoon":
-                    command = "select * from tbldevice";
+                    command = "select * from tblpersoon";
                     cmd.CommandText = command;
                     try
                     {
                         conn.Open();
                         MySqlDataReader reader = cmd.ExecuteReader();
-                        Device d = new Device();
+                        Persoon p = new Persoon();
                         while (reader.Read())
                         {
-                            d.DeviceID = Convert.ToInt32(reader[0]);
-                            d.Van = Convert.ToDateTime(reader[1]);
-                            d.Tot = Convert.ToDateTime(reader[2]);
+                            p.PersoonID = Convert.ToInt32(reader[0]);
+                            p.GSM = Convert.ToString(reader[1]);
+                            p.Functie = Convert.ToString(reader[2]);
+                            p.Voornaam = Convert.ToString(reader[3]);
+                            p.Achternaam = Convert.ToString(reader[4]);
                         }
-                        lijst.Add(d);
+                        lijst.Add(p);
                     }
                     catch
                     {
                         MessageBox.Show("Error while fetching data.");
                     }
-                    foreach (Device d in lijst)
+                    foreach (Persoon p in lijst)
                     {
-                        ListData.Items.Add(d.DeviceID + "\t" + d.Van + "\t\t" + d.Tot);
+                        ListData.Items.Add(p.PersoonID + "\t" + p.Functie + "\t" + p.Voornaam + "\t" + p.Achternaam + "\t" + p.GSM);
                     }
                     break;
                 case "Event":
-                    command = "select * from tbldevice";
+                    command = "select * from tblevents";
                     cmd.CommandText = command;
                     try
                     {
                         conn.Open();
                         MySqlDataReader reader = cmd.ExecuteReader();
-                        Device d = new Device();
+                        Events e = new Events();
                         while (reader.Read())
                         {
-                            d.DeviceID = Convert.ToInt32(reader[0]);
-                            d.Van = Convert.ToDateTime(reader[1]);
-                            d.Tot = Convert.ToDateTime(reader[2]);
+                            e.ContactpersoonID = Convert.ToInt32(reader[0]);
+                            e.Naam = Convert.ToString(reader[1]);
+                            e.Locatie = Convert.ToString(reader[2]);
+                            e.ContactpersoonID = Convert.ToInt32(reader[3]);
+                            e.VerantwoordelijkeID = Convert.ToInt32(reader[4]);
                         }
-                        lijst.Add(d);
+                        lijst.Add(e);
                     }
                     catch
                     {
                         MessageBox.Show("Error while fetching data.");
                     }
-                    foreach (Device d in lijst)
+                    foreach (Events e in lijst)
                     {
-                        ListData.Items.Add(d.DeviceID + "\t" + d.Van + "\t\t" + d.Tot);
+                        ListData.Items.Add(e.ContactpersoonID + "\t" + e.Naam + "\t" + e.Locatie + "\t" + e.ContactpersoonID + "\t" + e.VerantwoordelijkeID);
                     }
                     break;
             }
@@ -267,8 +271,12 @@ namespace Server
                     c.Show();
                     break;
                 case "Persoon":
+                    NewPersoon p = new NewPersoon(myConnectionString);
+                    p.Show();
                     break;
                 case "Event":
+                    //NewEvent ev = new NewEvent(myConnectionString);
+                    //ev.Show();
                     break;
             }
         }

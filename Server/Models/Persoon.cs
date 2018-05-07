@@ -9,7 +9,7 @@ namespace Server.Models
     public class Persoon
     {
         public int PersoonID { get; set; }
-        public int GSM { get; set; }
+        public string GSM { get; set; }
         public string Functie { get; set; }
         public string Voornaam { get; set; }
         public string Achternaam { get; set; }
