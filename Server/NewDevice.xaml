@@ -5,8 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Server"
         mc:Ignorable="d"
-        Title="NewDevice" Height="450" Width="800">
+        Title="NewDevice" Height="340.763" Width="369.817">
     <Grid>
-        
+        <Button x:Name="btnDone" Content="Add new device" HorizontalAlignment="Left" VerticalAlignment="Top" Width="116" Margin="118,211,0,0" Click="btnDone_Click" Height="41"/>
+        <Label Content="Van:" HorizontalAlignment="Left" Margin="57,86,0,0" VerticalAlignment="Top"/>
+        <Label Content="Tot:" HorizontalAlignment="Left" Margin="57,117,0,0" VerticalAlignment="Top"/>
+        <DatePicker x:Name="DatePickerVan" HorizontalAlignment="Left" Margin="127,88,0,0" VerticalAlignment="Top" Width="160"/>
+        <DatePicker x:Name="DatePickerTot" HorizontalAlignment="Left" Margin="127,119,0,0" VerticalAlignment="Top" Width="160"/>
+
     </Grid>
 </Window>

@@ -19,9 +19,27 @@ namespace Server
     /// </summary>
     public partial class NewDevice : Window
     {
-        public NewDevice(string myConnectionstring)
+        private string connectionstring;
+
+        public NewDevice(string connectionstring)
         {
+            this.connectionstring = connectionstring;
             InitializeComponent();
+        }
+
+        private void btnDone_Click(object sender, RoutedEventArgs e)
+        {
+            string query = "INSERT INTO tbldevice (Van, Tot)";
+            //query += " VALUES (@Van, @Tot)";
+            string USdateVan = DateTime.Parse(DatePickerVan.Text).ToString("yyyy-MM-dd HH:mm:ss");
+            string USdateTot = DateTime.Parse(DatePickerTot.Text).ToString("yyyy-MM-dd HH:mm:ss");
+
+            query += " VALUES ('" + USdateVan + "', '" + USdateTot + "')";
+
+            Data d = new Data(connectionstring);
+            d.DataInsert(query);
+
+            this.Close();
         }
     }
 }
