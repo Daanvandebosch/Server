@@ -134,14 +134,14 @@ namespace Server
                     {
                         conn.Open();
                         MySqlDataReader reader = cmd.ExecuteReader();
-                        Device d = new Device();
                         while (reader.Read())
                         {
+                            Device d = new Device();
                             d.DeviceID = Convert.ToInt32(reader[0]);
                             d.Van = Convert.ToDateTime(reader[1]);
                             d.Tot = Convert.ToDateTime(reader[2]);
+                            lijst.Add(d);
                         }
-                        lijst.Add(d);
                     }
                     catch
                     {
@@ -149,7 +149,7 @@ namespace Server
                     }
                     foreach (Device d in lijst)
                     {
-                        ListData.Items.Add(d.DeviceID + "\t" + d.Van + "\t\t" + d.Tot);
+                        ListData.Items.Add(d.DeviceID.ToString().PadRight(5) + d.Van.ToString().PadRight(20) + d.Tot);
                     }
                     break;
                 case "Container":
@@ -175,7 +175,7 @@ namespace Server
                     }
                     foreach (Container c in lijst)
                     {
-                        ListData.Items.Add(c.ContainerID + "\t" + c.Plaats + "\t" + c.Van + "\t\t" + c.Tot);
+                        ListData.Items.Add(c.ContainerID.ToString().PadRight(5) + c.Plaats.PadRight(10) + c.Van.ToString().PadRight(20)  + c.Tot);
                     }
                     break;
                 case "Persoon":
@@ -185,16 +185,16 @@ namespace Server
                     {
                         conn.Open();
                         MySqlDataReader reader = cmd.ExecuteReader();
-                        Persoon p = new Persoon();
                         while (reader.Read())
                         {
+                            Persoon p = new Persoon();
                             p.PersoonID = Convert.ToInt32(reader[0]);
                             p.GSM = Convert.ToString(reader[1]);
                             p.Functie = Convert.ToString(reader[2]);
                             p.Voornaam = Convert.ToString(reader[3]);
                             p.Achternaam = Convert.ToString(reader[4]);
+                            lijst.Add(p);
                         }
-                        lijst.Add(p);
                     }
                     catch
                     {
@@ -202,7 +202,7 @@ namespace Server
                     }
                     foreach (Persoon p in lijst)
                     {
-                        ListData.Items.Add(p.PersoonID + "\t" + p.Functie + "\t" + p.Voornaam + "\t" + p.Achternaam + "\t" + p.GSM);
+                        ListData.Items.Add(p.PersoonID.ToString().PadRight(5) + p.Functie.PadRight(10) + p.Voornaam.PadRight(10) + p.Achternaam.PadRight(15) + p.GSM);
                     }
                     break;
                 case "Event":
@@ -212,16 +212,16 @@ namespace Server
                     {
                         conn.Open();
                         MySqlDataReader reader = cmd.ExecuteReader();
-                        Events e = new Events();
                         while (reader.Read())
                         {
+                            Events e = new Events();
                             e.ContactpersoonID = Convert.ToInt32(reader[0]);
                             e.Naam = Convert.ToString(reader[1]);
                             e.Locatie = Convert.ToString(reader[2]);
                             e.ContactpersoonID = Convert.ToInt32(reader[3]);
                             e.VerantwoordelijkeID = Convert.ToInt32(reader[4]);
+                            lijst.Add(e);
                         }
-                        lijst.Add(e);
                     }
                     catch
                     {
@@ -229,7 +229,7 @@ namespace Server
                     }
                     foreach (Events e in lijst)
                     {
-                        ListData.Items.Add(e.ContactpersoonID + "\t" + e.Naam + "\t" + e.Locatie + "\t" + e.ContactpersoonID + "\t" + e.VerantwoordelijkeID);
+                        ListData.Items.Add(e.ContactpersoonID.ToString().PadRight(5) + e.Naam.PadRight(10) + e.Locatie.PadRight(10) + e.ContactpersoonID.ToString().PadRight(5) + e.VerantwoordelijkeID);
                     }
                     break;
             }
@@ -275,8 +275,8 @@ namespace Server
                     p.Show();
                     break;
                 case "Event":
-                    //NewEvent ev = new NewEvent(myConnectionString);
-                    //ev.Show();
+                    NewEvent ev = new NewEvent(myConnectionString);
+                    ev.Show();
                     break;
             }
         }
