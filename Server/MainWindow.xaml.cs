@@ -30,6 +30,7 @@ namespace Server
         Data sql;
         private DispatcherTimer tCheckConnectionDatabase = new DispatcherTimer();
         private string selectedAdd = "";
+        private DispatcherTimer tRefreshData = new DispatcherTimer();
 
         public MainWindow()
         {
@@ -48,6 +49,7 @@ namespace Server
             if (CheckConnectionDatabase())
             {
                 UpdateLists();
+                updateRightList();
             }
         }
 
@@ -113,8 +115,7 @@ namespace Server
                 MessageBox.Show(ex.Message);
             }
         }
-
-        private void ComboAdd_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void updateRightList()
         {
             MySqlConnection conn = new MySqlConnection(myConnectionString);
             MySqlCommand cmd = new MySqlCommand();
@@ -122,10 +123,11 @@ namespace Server
             string command = "";
             List<dynamic> lijst = new List<dynamic>();
 
-            switch (ComboAdd.SelectedValue.ToString())
+            ListData.Items.Clear();
+
+            switch (selectedAdd)
             {
-                case "System.Windows.Controls.ComboBoxItem: Device":
-                    selectedAdd = "Device";
+                case "Device":
                     command = "select * from tbldevice";
                     cmd.CommandText = command;
                     try
@@ -145,13 +147,12 @@ namespace Server
                     {
                         MessageBox.Show("Error while fetching data.");
                     }
-                    foreach(Device d in lijst)
+                    foreach (Device d in lijst)
                     {
-                        ListData.Items.Add(d.DeviceID);
+                        ListData.Items.Add(d.DeviceID + "\t" + d.Van + "\t\t" + d.Tot);
                     }
                     break;
-                case "System.Windows.Controls.ComboBoxItem: Container":
-                    selectedAdd = "Container";
+                case "Container":
                     command = "select * from tblcontainer";
                     cmd.CommandText = command;
                     try
@@ -177,11 +178,78 @@ namespace Server
                         ListData.Items.Add(c.ContainerID + "\t" + c.Plaats + "\t" + c.Van + "\t\t" + c.Tot);
                     }
                     break;
+                case "Persoon":
+                    command = "select * from tbldevice";
+                    cmd.CommandText = command;
+                    try
+                    {
+                        conn.Open();
+                        MySqlDataReader reader = cmd.ExecuteReader();
+                        Device d = new Device();
+                        while (reader.Read())
+                        {
+                            d.DeviceID = Convert.ToInt32(reader[0]);
+                            d.Van = Convert.ToDateTime(reader[1]);
+                            d.Tot = Convert.ToDateTime(reader[2]);
+                        }
+                        lijst.Add(d);
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Error while fetching data.");
+                    }
+                    foreach (Device d in lijst)
+                    {
+                        ListData.Items.Add(d.DeviceID + "\t" + d.Van + "\t\t" + d.Tot);
+                    }
+                    break;
+                case "Event":
+                    command = "select * from tbldevice";
+                    cmd.CommandText = command;
+                    try
+                    {
+                        conn.Open();
+                        MySqlDataReader reader = cmd.ExecuteReader();
+                        Device d = new Device();
+                        while (reader.Read())
+                        {
+                            d.DeviceID = Convert.ToInt32(reader[0]);
+                            d.Van = Convert.ToDateTime(reader[1]);
+                            d.Tot = Convert.ToDateTime(reader[2]);
+                        }
+                        lijst.Add(d);
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Error while fetching data.");
+                    }
+                    foreach (Device d in lijst)
+                    {
+                        ListData.Items.Add(d.DeviceID + "\t" + d.Van + "\t\t" + d.Tot);
+                    }
+                    break;
+            }
+        }
+
+        private void ComboAdd_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            switch (ComboAdd.SelectedValue.ToString())
+            {
+                case "System.Windows.Controls.ComboBoxItem: Device":
+                    selectedAdd = "Device";
+                    updateRightList();
+                    break;
+                case "System.Windows.Controls.ComboBoxItem: Container":
+                    selectedAdd = "Container";
+                    updateRightList();
+                    break;
                 case "System.Windows.Controls.ComboBoxItem: Event":
                     selectedAdd = "Event";
+                    updateRightList();
                     break;
                 case "System.Windows.Controls.ComboBoxItem: Persoon":
                     selectedAdd = "Persoon";
+                    updateRightList();
                     break;
             }
         }
