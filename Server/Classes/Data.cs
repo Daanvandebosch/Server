@@ -48,7 +48,7 @@ namespace Server
             SimpleExecute(_command);
         }
 
-        public void DataRemoce(string _command)
+        public void DataRemove(string _command)
         {
             SimpleExecute(_command);
         }

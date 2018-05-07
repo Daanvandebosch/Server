@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,9 +31,9 @@ namespace Server
 
         private void btnDone_Click(object sender, RoutedEventArgs e)
         {
+            var usCulture = "en-US";
             string query = "INSERT INTO tblcontainer (Plaats, Van, Tot)";
-            //query += " VALUES (@Plaats, @Van, @Tot)";
-            query += " VALUES (" + TextBoxPlaats.Text + ", " + DatePickerVan.Text + ", " + DatePickerTot.Text + ")";
+            query += " VALUES ('" + TextBoxPlaats.Text + "', '" + DateTime.Parse(DatePickerVan.Text).ToString("yyyy-MM-dd HH:mm:ss") + "', '" + DateTime.Parse(DatePickerTot.Text).ToString("yyyy-MM-dd HH:mm:ss") + "')";
 
             Data d = new Data(connectionstring);
             d.DataInsert(query);

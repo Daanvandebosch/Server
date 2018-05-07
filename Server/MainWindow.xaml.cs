@@ -145,6 +145,10 @@ namespace Server
                     {
                         MessageBox.Show("Error while fetching data.");
                     }
+                    foreach(Device d in lijst)
+                    {
+                        ListData.Items.Add(d.DeviceID);
+                    }
                     break;
                 case "System.Windows.Controls.ComboBoxItem: Container":
                     selectedAdd = "Container";
@@ -167,6 +171,10 @@ namespace Server
                     catch
                     {
                         MessageBox.Show("Error while fetching data.");
+                    }
+                    foreach (Container c in lijst)
+                    {
+                        ListData.Items.Add(c.ContainerID + "\t" + c.Plaats + "\t" + c.Van + "\t\t" + c.Tot);
                     }
                     break;
                 case "System.Windows.Controls.ComboBoxItem: Event":
