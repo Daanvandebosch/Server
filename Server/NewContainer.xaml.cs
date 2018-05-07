@@ -40,6 +40,8 @@ namespace Server
 
             Data d = new Data(connectionstring);
             d.DataInsert(query);
+
+            this.Close();
         }
     }
 }

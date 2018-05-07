@@ -19,9 +19,24 @@ namespace Server
     /// </summary>
     public partial class NewPersoon : Window
     {
-        public NewPersoon()
+        private string connectionstring;
+
+        public NewPersoon(string connectionstring)
         {
+            this.connectionstring = connectionstring;
             InitializeComponent();
+        }
+
+        private void btnDone_Click(object sender, RoutedEventArgs e)
+        {
+            string query = "INSERT INTO tblpersoon (GSM, Functie, Voornaam, Achternaam)";
+
+            query += " VALUES ('" + TextBoxGSM.Text + "', '" + TextBoxFunctie.Text + "', '" + TextBoxVoornaam.Text + "', '" + TextBoxAchternaam.Text + "')";
+
+            Data d = new Data(connectionstring);
+            d.DataInsert(query);
+
+            this.Close();
         }
     }
 }
