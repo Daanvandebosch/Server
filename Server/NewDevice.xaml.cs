@@ -19,7 +19,7 @@ namespace Server
     /// </summary>
     public partial class NewDevice : Window
     {
-        public NewDevice()
+        public NewDevice(string myConnectionstring)
         {
             InitializeComponent();
         }

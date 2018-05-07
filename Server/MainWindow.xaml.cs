@@ -29,6 +29,7 @@ namespace Server
         private string myConnectionString = string.Format("datasource ={0}; port=3306;username= {1};password= {2};database={3}", "10.11.51.152", "root", "bobeke", "mydb");
         Data sql;
         private DispatcherTimer tCheckConnectionDatabase = new DispatcherTimer();
+        private string selectedAdd = "";
 
         public MainWindow()
         {
@@ -115,9 +116,85 @@ namespace Server
 
         private void ComboAdd_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            NewContainer newD = new NewContainer(myConnectionString);
-            newD.Show();
+            MySqlConnection conn = new MySqlConnection(myConnectionString);
+            MySqlCommand cmd = new MySqlCommand();
+            cmd.Connection = conn;
+            string command = "";
+            List<dynamic> lijst = new List<dynamic>();
 
+            switch (ComboAdd.SelectedValue.ToString())
+            {
+                case "System.Windows.Controls.ComboBoxItem: Device":
+                    selectedAdd = "Device";
+                    command = "select * from tbldevice";
+                    cmd.CommandText = command;
+                    try
+                    {
+                        conn.Open();
+                        MySqlDataReader reader = cmd.ExecuteReader();
+                        Device d = new Device();
+                        while (reader.Read())
+                        {
+                            d.DeviceID = Convert.ToInt32(reader[0]);
+                            d.Van = Convert.ToDateTime(reader[1]);
+                            d.Tot = Convert.ToDateTime(reader[2]);
+                        }
+                        lijst.Add(d);
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Error while fetching data.");
+                    }
+                    break;
+                case "System.Windows.Controls.ComboBoxItem: Container":
+                    selectedAdd = "Container";
+                    command = "select * from tblcontainer";
+                    cmd.CommandText = command;
+                    try
+                    {
+                        conn.Open();
+                        MySqlDataReader reader = cmd.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            Container c = new Container();
+                            c.ContainerID = Convert.ToInt32(reader[0]);
+                            c.Plaats = Convert.ToString(reader[1]);
+                            c.Van = Convert.ToDateTime(reader[2]);
+                            c.Tot = Convert.ToDateTime(reader[3]);
+                            lijst.Add(c);
+                        }
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Error while fetching data.");
+                    }
+                    break;
+                case "System.Windows.Controls.ComboBoxItem: Event":
+                    selectedAdd = "Event";
+                    break;
+                case "System.Windows.Controls.ComboBoxItem: Persoon":
+                    selectedAdd = "Persoon";
+                    break;
+            }
+        }
+
+        private void btnAdd_Click(object sender, RoutedEventArgs e)
+        {
+            switch (selectedAdd)
+            {
+                case "Device":
+                    NewDevice d = new NewDevice(myConnectionString);
+                    d.Show();
+                    break;
+                case "Container":
+                    NewContainer c = new NewContainer(myConnectionString);
+                    c.Show();
+                    break;
+                case "Persoon":
+                    break;
+                case "Event":
+                    break;
+            }
         }
     }
 }
