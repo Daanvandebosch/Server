@@ -1,0 +1,17 @@
+﻿<Window x:Class="Server.NewDevice"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Server"
+        mc:Ignorable="d"
+        Title="NewDevice" Height="350" Width="400">
+    <Grid>
+        <Button x:Name="btnDone" Content="Add new device" HorizontalAlignment="Left" VerticalAlignment="Top" Width="116" Margin="135,214,0,0" Click="btnDone_Click" Height="41"/>
+        <Label Content="Van:" HorizontalAlignment="Left" Margin="77,79,0,0" VerticalAlignment="Top"/>
+        <Label Content="Tot:" HorizontalAlignment="Left" Margin="77,110,0,0" VerticalAlignment="Top"/>
+        <DatePicker x:Name="DatePickerVan" HorizontalAlignment="Left" Margin="147,81,0,0" VerticalAlignment="Top" Width="160"/>
+        <DatePicker x:Name="DatePickerTot" HorizontalAlignment="Left" Margin="147,112,0,0" VerticalAlignment="Top" Width="160"/>
+
+    </Grid>
+</Window>

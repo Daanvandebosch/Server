@@ -80,23 +80,23 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="NewContainer.xaml">
+    <Page Include="Add\NewContainer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="NewDevice.xaml">
+    <Page Include="Add\NewDevice.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="NewEvent.xaml">
+    <Page Include="Add\NewEvent.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="NewInstallatie.xaml">
+    <Page Include="Add\NewInstallatie.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="NewPersoon.xaml">
+    <Page Include="Add\NewPersoon.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -108,19 +108,19 @@
     <Compile Include="Models\Installatie.cs" />
     <Compile Include="Models\Log.cs" />
     <Compile Include="Models\Persoon.cs" />
-    <Compile Include="NewContainer.xaml.cs">
+    <Compile Include="Add\NewContainer.xaml.cs">
       <DependentUpon>NewContainer.xaml</DependentUpon>
     </Compile>
-    <Compile Include="NewDevice.xaml.cs">
+    <Compile Include="Add\NewDevice.xaml.cs">
       <DependentUpon>NewDevice.xaml</DependentUpon>
     </Compile>
-    <Compile Include="NewEvent.xaml.cs">
+    <Compile Include="Add\NewEvent.xaml.cs">
       <DependentUpon>NewEvent.xaml</DependentUpon>
     </Compile>
-    <Compile Include="NewInstallatie.xaml.cs">
+    <Compile Include="Add\NewInstallatie.xaml.cs">
       <DependentUpon>NewInstallatie.xaml</DependentUpon>
     </Compile>
-    <Compile Include="NewPersoon.xaml.cs">
+    <Compile Include="Add\NewPersoon.xaml.cs">
       <DependentUpon>NewPersoon.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">

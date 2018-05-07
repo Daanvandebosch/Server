@@ -1,0 +1,19 @@
+﻿<Window x:Class="Server.NewContainer"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Server"
+        mc:Ignorable="d"
+        Title="NewContainer" Height="350" Width="400">
+    <Grid>
+        <TextBox x:Name="TextBoxPlaats" HorizontalAlignment="Left" Height="23" Margin="152,61,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160"/>
+        <Button x:Name="btnDone" Content="Add new container" HorizontalAlignment="Left" VerticalAlignment="Top" Width="116" Margin="135,219,0,0" Click="btnDone_Click" Height="41"/>
+        <Label Content="Plaats:" HorizontalAlignment="Left" Margin="82,58,0,0" VerticalAlignment="Top"/>
+        <Label Content="Van:" HorizontalAlignment="Left" Margin="82,89,0,0" VerticalAlignment="Top"/>
+        <Label Content="Tot:" HorizontalAlignment="Left" Margin="82,120,0,0" VerticalAlignment="Top"/>
+        <DatePicker x:Name="DatePickerVan" HorizontalAlignment="Left" Margin="152,91,0,0" VerticalAlignment="Top" Width="160"/>
+        <DatePicker x:Name="DatePickerTot" HorizontalAlignment="Left" Margin="152,122,0,0" VerticalAlignment="Top" Width="160"/>
+
+    </Grid>
+</Window>
