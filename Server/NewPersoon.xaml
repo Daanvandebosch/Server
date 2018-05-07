@@ -7,11 +7,15 @@
         mc:Ignorable="d"
         Title="NewPerson" Height="340.763" Width="369.817">
     <Grid>
+        <TextBox x:Name="TextBoxVoornaam" HorizontalAlignment="Left" Height="23" Margin="127,58,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160"/>
+        <Label Content="Voornaam:" HorizontalAlignment="Left" Margin="45,55,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="TextBoxAchternaam" HorizontalAlignment="Left" Height="23" Margin="127,89,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160"/>
+        <Label Content="Achternaam:" HorizontalAlignment="Left" Margin="45,86,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="TextBoxFunctie" HorizontalAlignment="Left" Height="23" Margin="127,120,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160"/>
+        <Label Content="Functie:" HorizontalAlignment="Left" Margin="45,117,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="TextBoxGSM" HorizontalAlignment="Left" Height="23" Margin="127,151,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160"/>
+        <Label Content="GSM:" HorizontalAlignment="Left" Margin="45,148,0,0" VerticalAlignment="Top"/>
         <Button x:Name="btnDone" Content="Add new person" HorizontalAlignment="Left" VerticalAlignment="Top" Width="116" Margin="118,211,0,0" Click="btnDone_Click" Height="41"/>
-        <Label Content="Van:" HorizontalAlignment="Left" Margin="57,86,0,0" VerticalAlignment="Top"/>
-        <Label Content="Tot:" HorizontalAlignment="Left" Margin="57,117,0,0" VerticalAlignment="Top"/>
-        <DatePicker x:Name="DatePickerVan" HorizontalAlignment="Left" Margin="127,88,0,0" VerticalAlignment="Top" Width="160"/>
-        <DatePicker x:Name="DatePickerTot" HorizontalAlignment="Left" Margin="127,119,0,0" VerticalAlignment="Top" Width="160"/>
-
+        
     </Grid>
 </Window>
