@@ -26,29 +26,34 @@ namespace Server
     /// </summary>
     public partial class MainWindow : Window
     {
-        private string myConnectionString = string.Format("datasource ={0}; port=3306;username= {1};password= {2};database={3}", "10.11.51.22", "root", "bobeke", "mydb");
+        private string myConnectionString = string.Format("datasource ={0}; port=3306;username= {1};password= {2};database={3}", "10.11.51.152", "root", "bobeke", "mydb");
         Data sql;
         private DispatcherTimer tCheckConnectionDatabase = new DispatcherTimer();
 
         public MainWindow()
         {
             InitializeComponent();
-            CheckConnectionDatabase();
-            tCheckConnectionDatabase.Interval = TimeSpan.FromMilliseconds(5000);
+            if (CheckConnectionDatabase())
+            {
+                UpdateLists();
+            }
+            tCheckConnectionDatabase.Interval = TimeSpan.FromMilliseconds(15000);
             tCheckConnectionDatabase.Tick += tCheckConnectionDatabase_Tick;
             tCheckConnectionDatabase.IsEnabled = true;
-            UpdateLists();
         }
 
         private void tCheckConnectionDatabase_Tick(object sender, EventArgs e)
         {
-            CheckConnectionDatabase();
+            if (CheckConnectionDatabase())
+            {
+                UpdateLists();
+            }
         }
 
         /// <summary>
         /// Setup voor database connectie en mainpage
         /// </summary>
-        private void CheckConnectionDatabase()
+        private bool CheckConnectionDatabase()
         {
             try
             {
@@ -56,12 +61,14 @@ namespace Server
                 sql.ConnectionTest();
                 Brush b = new SolidColorBrush(Colors.Green);
                 status.Fill = b;
+                return true;
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
                 Brush b = new SolidColorBrush(Colors.Red);
                 status.Fill = b;
+                return false;
             }
         }
 
@@ -79,23 +86,30 @@ namespace Server
 
             command = "select * from tblinstallatie";
             cmd.CommandText = command;
-            conn.Open();
-            MySqlDataReader reader = cmd.ExecuteReader();
-            while (reader.Read())
+            try
             {
-                Installatie i = new Installatie()
+                conn.Open();
+                MySqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
                 {
-                    InstallatieID = Convert.ToInt32(reader[0]),
-                    ContainerID = Convert.ToInt32(reader[1]),
-                    DeviceID = Convert.ToInt32(reader[2]),
-                    Van = Convert.ToDateTime(reader[3]),
-                    Tot = Convert.ToDateTime(reader[4]),
-                    EventID = Convert.ToInt32(reader[5]),
-                    Omschrijving = Convert.ToString(reader[6]),
-                    VerantwoordelijkeID = Convert.ToInt32(reader[7])
-                };
-                listI.Add(i);
-                ListInstallaties.Items.Add(i);
+                    Installatie i = new Installatie()
+                    {
+                        InstallatieID = Convert.ToInt32(reader[0]),
+                        ContainerID = Convert.ToInt32(reader[1]),
+                        DeviceID = Convert.ToInt32(reader[2]),
+                        Van = Convert.ToDateTime(reader[3]),
+                        Tot = Convert.ToDateTime(reader[4]),
+                        EventID = Convert.ToInt32(reader[5]),
+                        Omschrijving = Convert.ToString(reader[6]),
+                        VerantwoordelijkeID = Convert.ToInt32(reader[7])
+                    };
+                    listI.Add(i);
+                    ListInstallaties.Items.Add(i);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
