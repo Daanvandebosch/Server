@@ -43,8 +43,7 @@ namespace Server
                 + USdateTot + "', '"
                 + ComboAddEventID.SelectedValue + "', '"
                 + TextBoxOmschrijving + "', '"
-                + ComboAddVerantwoordelijkeID.SelectedValue + "', '"
-                + "')";
+                + ComboAddVerantwoordelijkeID.SelectedValue + "')";
 
             Data d = new Data(connectionstring);
             d.DataInsert(query);
