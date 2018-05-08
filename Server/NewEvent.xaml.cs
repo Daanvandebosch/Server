@@ -19,6 +19,7 @@ namespace Server
     /// </summary>
     public partial class NewEvent : Window
     {
+        //test
         private string connectionstring;
 
         public NewEvent(string connectionstring)
