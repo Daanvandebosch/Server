@@ -1,0 +1,21 @@
+﻿<Window x:Class="Server.NewPersoon"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Server"
+        mc:Ignorable="d"
+        Title="NewPerson" Height="350" Width="400" FontFamily="Consolas">
+    <Grid>
+        <TextBox x:Name="TextBoxVoornaam" HorizontalAlignment="Left" Height="23" Margin="150,44,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160"/>
+        <Label Content="Voornaam:" HorizontalAlignment="Left" Margin="68,41,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="TextBoxAchternaam" HorizontalAlignment="Left" Height="23" Margin="150,75,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160"/>
+        <Label Content="Achternaam:" HorizontalAlignment="Left" Margin="68,72,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="TextBoxFunctie" HorizontalAlignment="Left" Height="23" Margin="150,106,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160"/>
+        <Label Content="Functie:" HorizontalAlignment="Left" Margin="68,103,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="TextBoxGSM" HorizontalAlignment="Left" Height="23" Margin="150,137,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160"/>
+        <Label Content="GSM:" HorizontalAlignment="Left" Margin="68,134,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btnDone" Content="Add new person" HorizontalAlignment="Left" VerticalAlignment="Top" Width="116" Margin="134,218,0,0" Click="btnDone_Click" Height="41"/>
+
+    </Grid>
+</Window>
