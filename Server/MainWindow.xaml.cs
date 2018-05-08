@@ -280,5 +280,11 @@ namespace Server
                     break;
             }
         }
+
+        private void BtnAddInstallatie_Click(object sender, RoutedEventArgs e)
+        {
+            NewInstallatie i = new NewInstallatie(myConnectionString);
+            i.Show();
+        }
     }
 }

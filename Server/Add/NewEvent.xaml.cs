@@ -37,7 +37,11 @@ namespace Server
         {
             string query = "INSERT INTO tblevents (Naam, Locatie, ContactpersoonID, VerantwoordelijkID)";
 
-            query += " VALUES ('" + TextBoxNaam.Text + "', '" + TextBoxLocatie.Text + "', '" + ComboAddContactpersoonID.SelectedValue + "', '" + ComboAddVerantwoordelijkeID.SelectedValue + "')";
+            query += " VALUES ('"
+                + TextBoxNaam.Text + "', '"
+                + TextBoxLocatie.Text + "', '"
+                + ComboAddContactpersoonID.SelectedValue + "', '"
+                + ComboAddVerantwoordelijkeID.SelectedValue + "')";
 
             Data d = new Data(connectionstring);
             d.DataInsert(query);
