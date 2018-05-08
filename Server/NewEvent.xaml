@@ -11,9 +11,9 @@
         <Label Content="Event naam:" HorizontalAlignment="Left" Margin="45,55,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="TextBoxLocatie" HorizontalAlignment="Left" Height="23" Margin="158,89,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160"/>
         <Label Content="Event locatie:" HorizontalAlignment="Left" Margin="45,86,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="ComboAddContactpersoonID" HorizontalAlignment="Left" Margin="158,121,0,0" VerticalAlignment="Top" Width="160" SelectionChanged="ComboAdd_SelectionChanged"/>
+        <ComboBox x:Name="ComboAddContactpersoonID" HorizontalAlignment="Left" Margin="158,121,0,0" VerticalAlignment="Top" Width="160"/>
         <Label Content="Contactpersoon:" HorizontalAlignment="Left" Margin="45,117,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="ComboAddVerantwoordelijkeID" HorizontalAlignment="Left" Margin="158,152,0,0" VerticalAlignment="Top" Width="160" SelectionChanged="ComboAdd_SelectionChanged"/>
+        <ComboBox x:Name="ComboAddVerantwoordelijkeID" HorizontalAlignment="Left" Margin="158,152,0,0" VerticalAlignment="Top" Width="160" />
         <Label Content="Verantwoordelijke:" HorizontalAlignment="Left" Margin="45,148,0,0" VerticalAlignment="Top"/>
         <Button x:Name="btnDone" Content="Add new person" HorizontalAlignment="Left" VerticalAlignment="Top" Width="116" Margin="118,211,0,0" Click="btnDone_Click" Height="41"/>
 
