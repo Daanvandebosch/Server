@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Server"
         mc:Ignorable="d"
-        Title="NewContainer" Height="350" Width="400">
+        Title="NewContainer" Height="350" Width="400" FontFamily="Consolas">
     <Grid>
         <TextBox x:Name="TextBoxPlaats" HorizontalAlignment="Left" Height="23" Margin="152,61,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160"/>
-        <Button x:Name="btnDone" Content="Add new container" HorizontalAlignment="Left" VerticalAlignment="Top" Width="116" Margin="135,219,0,0" Click="btnDone_Click" Height="41"/>
+        <Button x:Name="btnDone" Content="Add new container" HorizontalAlignment="Left" VerticalAlignment="Top" Width="133" Margin="123,220,0,0" Click="btnDone_Click" Height="41"/>
         <Label Content="Plaats:" HorizontalAlignment="Left" Margin="82,58,0,0" VerticalAlignment="Top"/>
         <Label Content="Van:" HorizontalAlignment="Left" Margin="82,89,0,0" VerticalAlignment="Top"/>
         <Label Content="Tot:" HorizontalAlignment="Left" Margin="82,120,0,0" VerticalAlignment="Top"/>

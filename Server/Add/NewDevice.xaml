@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Server"
         mc:Ignorable="d"
-        Title="NewDevice" Height="350" Width="400">
+        Title="NewDevice" Height="350" Width="400" FontFamily="Consolas">
     <Grid>
         <Button x:Name="btnDone" Content="Add new device" HorizontalAlignment="Left" VerticalAlignment="Top" Width="116" Margin="135,214,0,0" Click="btnDone_Click" Height="41"/>
         <Label Content="Van:" HorizontalAlignment="Left" Margin="77,79,0,0" VerticalAlignment="Top"/>

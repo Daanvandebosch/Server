@@ -1,5 +1,9 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using Server.Models;
+using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,6 +29,8 @@ namespace Server
         {
             this.connectionstring = connectionstring;
             InitializeComponent();
+
+            LoadItemsCombobox();
         }
 
         private void btnDone_Click(object sender, RoutedEventArgs e)
@@ -38,5 +44,68 @@ namespace Server
 
             this.Close();
         }
+
+        private void LoadItemsCombobox()
+        {
+            MySqlConnection conn = new MySqlConnection(connectionstring);
+            MySqlCommand cmd = new MySqlCommand();
+            cmd.Connection = conn;
+            string command = "";
+            List<dynamic> list = new List<dynamic>();
+
+            command = "select Voornaam,Achternaam from tblpersoon";
+            cmd.CommandText = command;
+
+            try
+            {
+                conn.Open();
+                MySqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    Persoon p = new Persoon();
+                    p.Voornaam = Convert.ToString(reader[0]);
+                    p.Achternaam = Convert.ToString(reader[1]);
+                    list.Add(p);
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Error while fetching data.");
+            }
+
+            foreach (Persoon p in list)
+            {
+                ComboAddContactpersoonID.Items.Add(p.Voornaam.PadRight(10) + p.Achternaam);
+                ComboAddVerantwoordelijkeID.Items.Add(p.Voornaam.PadRight(10) + p.Achternaam);
+            }
+        }
     }
 }
+
+//List<dynamic> list = new List<dynamic>();
+
+//command = "select Voornaam from tblpersoon";
+//            cmd.CommandText = command;
+
+//            try
+//            {
+//                conn.Open();
+//                MySqlDataReader reader = cmd.ExecuteReader();
+//                while (reader.Read())
+//                {
+//                    Persoon p = new Persoon();
+//p.Voornaam = Convert.ToString(reader[0]);
+//                    p.Achternaam = Convert.ToString(reader[1]);
+//                    list.Add(p);
+//                }
+//            }
+//            catch
+//            {
+//                MessageBox.Show("Error while fetching data.");
+//            }
+
+//            foreach (Persoon p in list)
+//            {
+
+//                ComboAddContactpersoonID.Items.Add(p.Voornaam.PadRight(10) + p.Achternaam);
+//            }
