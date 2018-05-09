@@ -59,7 +59,7 @@ namespace Server
             string command = "";
             List<dynamic> list = new List<dynamic>();
 
-            /// Verantwoorkelijke ID ///
+            /// Container ID ///
             command = "select ContainerID,Plaats from tblcontainer";
             cmd.CommandText = command;
             try
