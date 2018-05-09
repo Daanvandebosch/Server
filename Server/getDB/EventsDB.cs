@@ -9,7 +9,7 @@ using System.Windows;
 
 namespace Server.getDB
 {
-    public class EventDB
+    public class EventsDB
     {
         public static List<Events> GetEvents(string connectionstring)
         {

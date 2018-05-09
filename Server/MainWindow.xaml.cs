@@ -81,148 +81,69 @@ namespace Server
         /// </summary>
         private void UpdateLists()
         {
-            MySqlConnection conn = new MySqlConnection(myConnectionString);
-            MySqlCommand cmd = new MySqlCommand();
-            cmd.Connection = conn;
-            string command;
-
-            List<Installatie> listI = new List<Installatie>();
-
-            command = "select * from tblinstallatie";
-            cmd.CommandText = command;
-            try
+            List<Installatie> installaties = InstallatieDB.GetInstallaties(myConnectionString);
+            foreach (Installatie installatie in installaties)
             {
-                conn.Open();
-                MySqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-                    Installatie i = new Installatie()
-                    {
-                        InstallatieID = Convert.ToInt32(reader[0]),
-                        ContainerID = Convert.ToInt32(reader[1]),
-                        DeviceID = Convert.ToInt32(reader[2]),
-                        Van = Convert.ToDateTime(reader[3]),
-                        Tot = Convert.ToDateTime(reader[4]),
-                        EventID = Convert.ToInt32(reader[5]),
-                        Omschrijving = Convert.ToString(reader[6]),
-                        VerantwoordelijkeID = Convert.ToInt32(reader[7])
-                    };
-                    listI.Add(i);
-                    ListInstallaties.Items.Add(i);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
+                ListInstallaties.Items.Add(
+                    installatie.InstallatieID +
+                    installatie.ContainerID +
+                    installatie.DeviceID +
+                    installatie.Van.ToString() +
+                    installatie.Tot.ToString() +
+                    installatie.EventID +
+                    installatie.Omschrijving +
+                    installatie.VerantwoordelijkeID);
             }
         }
         private void updateRightList()
         {
-            MySqlConnection conn = new MySqlConnection(myConnectionString);
-            MySqlCommand cmd = new MySqlCommand();
-            cmd.Connection = conn;
-            string command = "";
-            List<dynamic> lijst = new List<dynamic>();
-
             ListData.Items.Clear();
 
             switch (selectedAdd)
             {
                 case "Device":
-                    command = "select * from tbldevice";
-                    cmd.CommandText = command;
-                    try
-                    {
-                        conn.Open();
-                        MySqlDataReader reader = cmd.ExecuteReader();
-                        while (reader.Read())
-                        {
-                            Device d = new Device();
-                            d.DeviceID = Convert.ToInt32(reader[0]);
-                            d.Van = Convert.ToDateTime(reader[1]);
-                            d.Tot = Convert.ToDateTime(reader[2]);
-                            lijst.Add(d);
-                        }
-                    }
-                    catch
-                    {
-                        MessageBox.Show("Error while fetching data.");
-                    }
-                    foreach (Device d in lijst)
+                    List<Device> deviceList = DeviceDB.GetDevice(myConnectionString);
+                    foreach (Device device in deviceList)
                     {
                         ListData.Items.Add(
-                            d.DeviceID.ToString().PadRight(5) +
-                            d.Van.ToString().PadRight(20) +
-                            d.Tot);
+                            device.DeviceID.ToString().PadRight(5) +
+                            device.Van.ToString().PadRight(20) +
+                            device.Tot);
                     }
                     break;
                 case "Container":
-                    command = "select * from tblcontainer";
-                    cmd.CommandText = command;
-                    try
-                    {
-                        conn.Open();
-                        MySqlDataReader reader = cmd.ExecuteReader();
-                        while (reader.Read())
-                        {
-                            Container c = new Container();
-                            c.ContainerID = Convert.ToInt32(reader[0]);
-                            c.Plaats = Convert.ToString(reader[1]);
-                            c.Van = Convert.ToDateTime(reader[2]);
-                            c.Tot = Convert.ToDateTime(reader[3]);
-                            lijst.Add(c);
-                        }
-                    }
-                    catch
-                    {
-                        MessageBox.Show("Error while fetching data.");
-                    }
-                    foreach (Container c in lijst)
+                    List<Container> containerList = ContainerDB.GetContainers(myConnectionString);
+                    foreach (Container container in containerList)
                     {
                         ListData.Items.Add(
-                            c.ContainerID.ToString().PadRight(5) +
-                            c.Plaats.PadRight(10) +
-                            c.Van.ToString().PadRight(20) +
-                            c.Tot);
+                            container.ContainerID.ToString().PadRight(5) +
+                            container.Plaats.PadRight(10) +
+                            container.Van.ToString().PadRight(20) +
+                            container.Tot);
                     }
                     break;
                 case "Persoon":
                     List<Persoon> persoonList = PersoonDB.GetPeople(myConnectionString);
-                    foreach (Persoon p in persoonList)
+                    foreach (Persoon persoon in persoonList)
                     {
                         ListData.Items.Add(
-                            p.PersoonID.ToString().PadRight(5) +
-                            p.Functie.PadRight(10) +
-                            p.Voornaam.PadRight(10) +
-                            p.Achternaam.PadRight(15) +
-                            p.GSM);
+                            persoon.PersoonID.ToString().PadRight(5) +
+                            persoon.Functie.PadRight(10) +
+                            persoon.Voornaam.PadRight(10) +
+                            persoon.Achternaam.PadRight(15) +
+                            persoon.GSM);
                     }
                     break;
                 case "Event":
-                    command = "select * from tblevents";
-                    cmd.CommandText = command;
-                    try
+                    List<Events> eventsList = EventsDB.GetEvents(myConnectionString);
+                    foreach (Events events in eventsList)
                     {
-                        conn.Open();
-                        MySqlDataReader reader = cmd.ExecuteReader();
-                        while (reader.Read())
-                        {
-                            Events e = new Events();
-                            e.ContactpersoonID = Convert.ToInt32(reader[0]);
-                            e.Naam = Convert.ToString(reader[1]);
-                            e.Locatie = Convert.ToString(reader[2]);
-                            e.ContactpersoonID = Convert.ToInt32(reader[3]);
-                            e.VerantwoordelijkeID = Convert.ToInt32(reader[4]);
-                            lijst.Add(e);
-                        }
-                    }
-                    catch
-                    {
-                        MessageBox.Show("Error while fetching data.");
-                    }
-                    foreach (Events e in lijst)
-                    {
-                        ListData.Items.Add(e.ContactpersoonID.ToString().PadRight(5) + e.Naam.PadRight(10) + e.Locatie.PadRight(10) + e.ContactpersoonID.ToString().PadRight(5) + e.VerantwoordelijkeID);
+                        ListData.Items.Add(
+                            events.ContactpersoonID.ToString().PadRight(5) +
+                            events.Naam.PadRight(10) +
+                            events.Locatie.PadRight(10) +
+                            events.ContactpersoonID.ToString().PadRight(5) +
+                            events.VerantwoordelijkeID);
                     }
                     break;
             }
