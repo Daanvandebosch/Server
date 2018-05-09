@@ -11,7 +11,7 @@ namespace Server.getDB
 {
     public class EventDB
     {
-        public static List<Events> GetPeople(string connectionstring)
+        public static List<Events> GetEvents(string connectionstring)
         {
             List<Events> eventen = new List<Events>();
 

@@ -11,7 +11,7 @@ namespace Server.getDB
 {
     class ContainerDB
     {
-        public static List<Container> GetPeople(string connectionstring)
+        public static List<Container> GetContainers(string connectionstring)
         {
             List<Container> containers = new List<Container>();
 
