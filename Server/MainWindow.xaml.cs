@@ -17,6 +17,7 @@ using System.Windows.Shapes;
 using System.Windows.Threading;
 using MySql.Data;
 using MySql.Data.MySqlClient;
+using Server.getDB;
 using Server.Models;
 
 namespace Server
@@ -149,7 +150,10 @@ namespace Server
                     }
                     foreach (Device d in lijst)
                     {
-                        ListData.Items.Add(d.DeviceID.ToString().PadRight(5) + d.Van.ToString().PadRight(20) + d.Tot);
+                        ListData.Items.Add(
+                            d.DeviceID.ToString().PadRight(5) +
+                            d.Van.ToString().PadRight(20) +
+                            d.Tot);
                     }
                     break;
                 case "Container":
@@ -175,34 +179,23 @@ namespace Server
                     }
                     foreach (Container c in lijst)
                     {
-                        ListData.Items.Add(c.ContainerID.ToString().PadRight(5) + c.Plaats.PadRight(10) + c.Van.ToString().PadRight(20)  + c.Tot);
+                        ListData.Items.Add(
+                            c.ContainerID.ToString().PadRight(5) +
+                            c.Plaats.PadRight(10) +
+                            c.Van.ToString().PadRight(20) +
+                            c.Tot);
                     }
                     break;
                 case "Persoon":
-                    command = "select * from tblpersoon";
-                    cmd.CommandText = command;
-                    try
+                    List<Persoon> persoonList = PersoonDB.GetPeople(myConnectionString);
+                    foreach (Persoon p in persoonList)
                     {
-                        conn.Open();
-                        MySqlDataReader reader = cmd.ExecuteReader();
-                        while (reader.Read())
-                        {
-                            Persoon p = new Persoon();
-                            p.PersoonID = Convert.ToInt32(reader[0]);
-                            p.GSM = Convert.ToString(reader[1]);
-                            p.Functie = Convert.ToString(reader[2]);
-                            p.Voornaam = Convert.ToString(reader[3]);
-                            p.Achternaam = Convert.ToString(reader[4]);
-                            lijst.Add(p);
-                        }
-                    }
-                    catch
-                    {
-                        MessageBox.Show("Error while fetching data.");
-                    }
-                    foreach (Persoon p in lijst)
-                    {
-                        ListData.Items.Add(p.PersoonID.ToString().PadRight(5) + p.Functie.PadRight(10) + p.Voornaam.PadRight(10) + p.Achternaam.PadRight(15) + p.GSM);
+                        ListData.Items.Add(
+                            p.PersoonID.ToString().PadRight(5) +
+                            p.Functie.PadRight(10) +
+                            p.Voornaam.PadRight(10) +
+                            p.Achternaam.PadRight(15) +
+                            p.GSM);
                     }
                     break;
                 case "Event":
