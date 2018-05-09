@@ -36,8 +36,14 @@ namespace Server
         private void btnDone_Click(object sender, RoutedEventArgs e)
         {
             string query = "INSERT INTO tblevents (Naam, Locatie, ContactpersoonID, VerantwoordelijkID)";
+            string ContactpersoonID = getContactpersoonID();
+            string VerantwoordelijkeID = getVerantwoordelijkeID();
 
-            query += " VALUES ('" + TextBoxNaam.Text + "', '" + TextBoxLocatie.Text + "', '" + ComboAddContactpersoonID.SelectedValue + "', '" + ComboAddVerantwoordelijkeID.SelectedValue + "')";
+            query += " VALUES ('"
+                + TextBoxNaam.Text + "', '"
+                + TextBoxLocatie.Text + "', '"
+                + ContactpersoonID + "', '"
+                + VerantwoordelijkeID + "')";
 
             Data d = new Data(connectionstring);
             d.DataInsert(query);
@@ -47,13 +53,36 @@ namespace Server
 
         private void LoadItemsCombobox()
         {
+            List<Persoon> persoonList = GetPeople(connectionstring);
+            foreach (Persoon p in persoonList)
+            {
+                ComboAddContactpersoonID.Items.Add(p.PersoonID.ToString().PadRight(2) + p.Voornaam.PadRight(10) + p.Achternaam);
+                ComboAddVerantwoordelijkeID.Items.Add(p.PersoonID.ToString().PadRight(2) + p.Voornaam.PadRight(10) + p.Achternaam);
+            }
+        }
+
+        private string getContactpersoonID()
+        {
+            string selected = ComboAddContactpersoonID.SelectedValue.ToString();
+            string[] array = selected.Split(' ');
+            return array[0];
+        }
+        private string getVerantwoordelijkeID()
+        {
+            string selected = ComboAddVerantwoordelijkeID.SelectedValue.ToString();
+            string[] array = selected.Split(' ');
+            return array[0];
+        }
+
+        public static List<Persoon> GetPeople(string connectionstring)
+        {
+            List<Persoon> personen = new List<Persoon>();
+            Persoon persoon;
+
             MySqlConnection conn = new MySqlConnection(connectionstring);
             MySqlCommand cmd = new MySqlCommand();
             cmd.Connection = conn;
-            string command = "";
-            List<dynamic> list = new List<dynamic>();
-
-            command = "select Voornaam,Achternaam from tblpersoon";
+            string command = "select PersoonID,Voornaam,Achternaam from tblpersoon";
             cmd.CommandText = command;
 
             try
@@ -62,10 +91,11 @@ namespace Server
                 MySqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    Persoon p = new Persoon();
-                    p.Voornaam = Convert.ToString(reader[0]);
-                    p.Achternaam = Convert.ToString(reader[1]);
-                    list.Add(p);
+                    persoon = new Persoon();
+                    persoon.PersoonID = Convert.ToInt32(reader[0]);
+                    persoon.Voornaam = Convert.ToString(reader[1]);
+                    persoon.Achternaam = Convert.ToString(reader[2]);
+                    personen.Add(persoon);
                 }
             }
             catch
@@ -73,12 +103,8 @@ namespace Server
                 MessageBox.Show("Error while fetching data.");
             }
 
-            foreach (Persoon p in list)
-            {
-                ComboAddContactpersoonID.Items.Add(p.Voornaam.PadRight(10) + p.Achternaam);
-                ComboAddVerantwoordelijkeID.Items.Add(p.Voornaam.PadRight(10) + p.Achternaam);
-            }
-        }
+            return personen;
+        } 
     }
 }
 
