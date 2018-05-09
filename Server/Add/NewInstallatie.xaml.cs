@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using Server.getDB;
 using Server.Models;
 using System;
 using System.Collections.Generic;
@@ -33,17 +34,22 @@ namespace Server
         {
             string query = "INSERT INTO tblinstallatie (ContainerID, DeviceID, Van, Tot, EventID, Omschrijving, VerantwoordelijkeID)";
 
+            string ContainerID = getContainerID();
+            string DeviceID = getDeviceID();
             string USdateVan = DateTime.Parse(DatePickerVan.Text).ToString("yyyy-MM-dd HH:mm:ss");
             string USdateTot = DateTime.Parse(DatePickerTot.Text).ToString("yyyy-MM-dd HH:mm:ss");
+            string EventID = getEventID();
+            string Omschrijving = TextBoxOmschrijving.Text;
+            string VerantwoordelijkeID = getVerantwoordelijkeID();
 
             query += " VALUES ('"
-                + ComboAddContainerID.SelectedValue + "', '"
-                + ComboAddDeviceID.SelectedValue + "', '"
+                + ContainerID + "', '"
+                + DeviceID + "', '"
                 + USdateVan + "', '"
                 + USdateTot + "', '"
-                + ComboAddEventID.SelectedValue + "', '"
-                + TextBoxOmschrijving + "', '"
-                + ComboAddVerantwoordelijkeID.SelectedValue + "')";
+                + EventID + "', '"
+                + Omschrijving + "', '"
+                + VerantwoordelijkeID + "')";
 
             Data d = new Data(connectionstring);
             d.DataInsert(query);
@@ -51,57 +57,73 @@ namespace Server
             this.Close();
         }
 
+        private string getVerantwoordelijkeID()
+        {
+            string selected = ComboAddVerantwoordelijkeID.SelectedValue.ToString();
+            string[] array = selected.Split(' ');
+            return array[0];
+        }
+
+        private string getEventID()
+        {
+            string selected = ComboAddEventID.SelectedValue.ToString();
+            string[] array = selected.Split(' ');
+            return array[0];
+        }
+
+        private string getDeviceID()
+        {
+            string selected = ComboAddDeviceID.SelectedValue.ToString();
+            string[] array = selected.Split(' ');
+            return array[0];
+        }
+
+        private string getContainerID()
+        {
+            string selected = ComboAddContainerID.SelectedValue.ToString();
+            string[] array = selected.Split(' ');
+            return array[0];
+        }
+
         private void LoadItemsCombobox()
         {
-            MySqlConnection conn = new MySqlConnection(connectionstring);
-            MySqlCommand cmd = new MySqlCommand();
-            cmd.Connection = conn;
-            string command = "";
-            List<dynamic> list = new List<dynamic>();
-
-            /// Container ID ///
-            command = "select ContainerID,Plaats from tblcontainer";
-            cmd.CommandText = command;
-            try
+            // Load ContainerIDs //
+            List<Container> containerList = ContainerDB.GetContainers(connectionstring);
+            foreach (Container container in containerList)
             {
-                conn.Open();
-                MySqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-                    Container c = new Container();
-                    c.ContainerID = Convert.ToInt32(reader[0]);
-                    c.Plaats = Convert.ToString(reader[1]);
-                    list.Add(c);
-                }
+                ComboAddContainerID.Items.Add(
+                    container.ContainerID.ToString().PadRight(2) +
+                    container.Plaats);
             }
-            catch { MessageBox.Show("Error while fetching 'ContainerID' data."); }
 
-            foreach (Container c in list)
+            // Load DeviceIDs //
+            List<Device> deviceList = DeviceDB.GetDevice(connectionstring);
+            foreach (Device device in deviceList)
             {
-                ComboAddContainerID.Items.Add(c.ContainerID.ToString().PadRight(2) + c.Plaats);
+                ComboAddDeviceID.Items.Add(
+                    device.DeviceID.ToString().PadRight(2) +
+                    device.Van +
+                    device.Tot);
             }
-            list.Clear();
 
-            /// Verantwoorkelijke ID ///
-            command = "select Voornaam,Achternaam from tblpersoon";
-            cmd.CommandText = command;
-            try
+            // Load EventIDs //
+            List<Events> eventsList = EventsDB.GetEvents(connectionstring);
+            foreach (Events events in eventsList)
             {
-                conn.Open();
-                MySqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-                    Persoon p = new Persoon();
-                    p.Voornaam = Convert.ToString(reader[0]);
-                    p.Achternaam = Convert.ToString(reader[1]);
-                    list.Add(p);
-                }
+                ComboAddEventID.Items.Add(
+                    events.EventID.ToString().PadRight(2) +
+                    events.Naam.PadRight(10) +
+                    events.Locatie);
             }
-            catch { MessageBox.Show("Error while fetching 'VerantwoordelijkeID' data."); }
 
-            foreach (Persoon p in list)
+            // Load VerantwoorkelijkeIDs //
+            List<Persoon> persoonList = PersoonDB.GetPeople(connectionstring);
+            foreach (Persoon persoon in persoonList)
             {
-                ComboAddVerantwoordelijkeID.Items.Add(p.Voornaam.PadRight(10) + p.Achternaam);
+                ComboAddVerantwoordelijkeID.Items.Add(
+                    persoon.PersoonID.ToString().PadRight(2) +
+                    persoon.Voornaam.PadRight(10) +
+                    persoon.Achternaam);
             }
         }
     }

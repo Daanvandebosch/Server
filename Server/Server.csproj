@@ -78,7 +78,8 @@
     <Compile Include="Classes\Data.cs" />
     <Compile Include="getDB\ContainerDB.cs" />
     <Compile Include="getDB\DeviceDB.cs" />
-    <Compile Include="getDB\EventDB.cs" />
+    <Compile Include="getDB\EventsDB.cs" />
+    <Compile Include="getDB\InstallatieDB.cs" />
     <Compile Include="getDB\PersoonDB.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
