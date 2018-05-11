@@ -81,6 +81,16 @@ namespace Server
         /// </summary>
         private void UpdateLists()
         {
+            ListInstallaties.Items.Clear();
+            ListInstallaties.Items.Add(
+                "InstallatieID" +
+                "ContainerID" +
+                "DeviceID" +
+                "Van" +
+                "Tot" +
+                "EventID" +
+                "Omschrijving" +
+                "VerantwoordelijkeID");
             List<Installatie> installaties = InstallatieDB.GetInstallaties(myConnectionString);
             foreach (Installatie installatie in installaties)
             {
@@ -102,7 +112,11 @@ namespace Server
             switch (selectedAdd)
             {
                 case "Device":
-                    List<Device> deviceList = DeviceDB.GetDevice(myConnectionString);
+                    ListData.Items.Add(
+                        "DeviceID".PadRight(5) +
+                        "Van".PadRight(20) +
+                        "Tot");
+                    List <Device> deviceList = DeviceDB.GetDevice(myConnectionString);
                     foreach (Device device in deviceList)
                     {
                         ListData.Items.Add(
@@ -112,6 +126,11 @@ namespace Server
                     }
                     break;
                 case "Container":
+                    ListData.Items.Add(
+                        "ContainerID".PadRight(5) +
+                        "Plaats".PadRight(10) +
+                        "Van".PadRight(20) +
+                        "Tot");
                     List<Container> containerList = ContainerDB.GetContainers(myConnectionString);
                     foreach (Container container in containerList)
                     {
@@ -123,6 +142,12 @@ namespace Server
                     }
                     break;
                 case "Persoon":
+                    ListData.Items.Add(
+                        "PersoonID".PadRight(5) +
+                        "Functie".PadRight(10) +
+                        "Voornaam".PadRight(10) +
+                        "Achternaam".PadRight(15) +
+                        "GSM");
                     List<Persoon> persoonList = PersoonDB.GetPeople(myConnectionString);
                     foreach (Persoon persoon in persoonList)
                     {
@@ -135,6 +160,12 @@ namespace Server
                     }
                     break;
                 case "Event":
+                    ListData.Items.Add(
+                        "ContactpersoonID".PadRight(5) +
+                        "Naam".PadRight(10) +
+                        "Locatie".PadRight(10) +
+                        "ContactpersoonID".PadRight(5) +
+                        "VerantwoordelijkeID");
                     List<Events> eventsList = EventsDB.GetEvents(myConnectionString);
                     foreach (Events events in eventsList)
                     {
