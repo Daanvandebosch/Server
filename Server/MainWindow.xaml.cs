@@ -36,45 +36,45 @@ namespace Server
         public MainWindow()
         {
             InitializeComponent();
-            //if (CheckConnectionDatabase())
-            //{
-            //    UpdateLists();
-            //}
-            //tCheckConnectionDatabase.Interval = TimeSpan.FromMilliseconds(15000);
-            //tCheckConnectionDatabase.Tick += tCheckConnectionDatabase_Tick;
-            //tCheckConnectionDatabase.IsEnabled = true;
+            if (CheckConnectionDatabase())
+            {
+                UpdateLists();
+            }
+            tCheckConnectionDatabase.Interval = TimeSpan.FromMilliseconds(15000);
+            tCheckConnectionDatabase.Tick += tCheckConnectionDatabase_Tick;
+            tCheckConnectionDatabase.IsEnabled = true;
         }
 
-        //private void tCheckConnectionDatabase_Tick(object sender, EventArgs e)
-        //{
-        //    if (CheckConnectionDatabase())
-        //    {
-        //        UpdateLists();
-        //        updateRightList();
-        //    }
-        //}
+        private void tCheckConnectionDatabase_Tick(object sender, EventArgs e)
+        {
+            if (CheckConnectionDatabase())
+            {
+                UpdateLists();
+                updateRightList();
+            }
+        }
 
         /// <summary>
         /// Setup voor database connectie en mainpage
         /// </summary>
-        //private bool CheckConnectionDatabase()
-        //{
-        //    try
-        //    {
-        //        sql = new Data(myConnectionString);
-        //        sql.ConnectionTest();
-        //        Brush b = new SolidColorBrush(Colors.Green);
-        //        status.Fill = b;
-        //        return true;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show(ex.Message);
-        //        Brush b = new SolidColorBrush(Colors.Red);
-        //        status.Fill = b;
-        //        return false;
-        //    }
-        //}
+        private bool CheckConnectionDatabase()
+        {
+            try
+            {
+                sql = new Data(myConnectionString);
+                sql.ConnectionTest();
+                Brush b = new SolidColorBrush(Colors.Green);
+                status.Fill = b;
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                Brush b = new SolidColorBrush(Colors.Red);
+                status.Fill = b;
+                return false;
+            }
+        }
 
         /// <summary>
         /// Update alle listboxen
@@ -83,13 +83,13 @@ namespace Server
         {
             ListInstallaties.Items.Clear();
             ListInstallaties.Items.Add(
-                "InstallatieID" +
-                "ContainerID" +
-                "DeviceID" +
-                "Van" +
-                "Tot" +
-                "EventID" +
-                "Omschrijving" +
+                "InstallatieID".PadRight(15) +
+                "ContainerID".PadRight(15) +
+                "DeviceID".PadRight(15) +
+                "Van".PadRight(10) +
+                "Tot".PadRight(10) +
+                "EventID".PadRight(10) +
+                "Omschrijving".PadRight(15) +
                 "VerantwoordelijkeID");
             List<Installatie> installaties = InstallatieDB.GetInstallaties(myConnectionString);
             foreach (Installatie installatie in installaties)
@@ -113,7 +113,7 @@ namespace Server
             {
                 case "Container":
                     ListData.Items.Add(
-                        "ContainerID".PadRight(5) +
+                        "ContainerID".PadRight(10) +
                         "Plaats".PadRight(10) +
                         "Van".PadRight(20) +
                         "Tot");
