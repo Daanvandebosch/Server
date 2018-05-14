@@ -245,30 +245,37 @@ namespace Server
 
         private void BtnDeleteData_Click(object sender, RoutedEventArgs e)
         {
-            string query = "DELETE FROM ";
-            string ID = ListData.SelectedValue.ToString().Substring(0, 4);
-            switch (selectedAdd)
+            try
             {
-                case "Container":
-                    query += "tblcontainer " +
-                        "WHERE ContainerID = " + ID;
-                    break;
-                case "Device":
-                    query += "tbldevice" +
-                    "WHERE DeviceID = " + ID;
-                    break;
-                case "Event":
-                    query += "tblevents" +
-                    "WHERE EventID = " + ID;
-                    break;
-                case "Persoon":
-                    query += "tblpersoon" +
-                    "WHERE PersoonID = " + ID;
-                    break;
-            }
+                string query = "DELETE FROM ";
+                string ID = ListData.SelectedValue.ToString().Substring(0, 4);
+                switch (selectedAdd)
+                {
+                    case "Container":
+                        query += "tblcontainer " +
+                            "WHERE ContainerID = " + ID;
+                        break;
+                    case "Device":
+                        query += "tbldevice" +
+                        "WHERE DeviceID = " + ID;
+                        break;
+                    case "Event":
+                        query += "tblevents" +
+                        "WHERE EventID = " + ID;
+                        break;
+                    case "Persoon":
+                        query += "tblpersoon" +
+                        "WHERE PersoonID = " + ID;
+                        break;
+                }
 
-            Data d = new Data(myConnectionString);
-            d.DataRemove(query);
+                Data d = new Data(myConnectionString);
+                d.DataRemove(query);
+            }
+            catch
+            {
+
+            }
         }
 
         private void btnRefresh_Click(object sender, RoutedEventArgs e)
