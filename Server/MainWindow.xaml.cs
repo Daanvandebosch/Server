@@ -95,14 +95,14 @@ namespace Server
             foreach (Installatie installatie in installaties)
             {
                 ListInstallaties.Items.Add(
-                    installatie.InstallatieID +
-                    installatie.ContainerID +
-                    installatie.DeviceID +
-                    installatie.Van.ToString() +
-                    installatie.Tot.ToString() +
-                    installatie.EventID +
-                    installatie.Omschrijving +
-                    installatie.VerantwoordelijkeID);
+                    installatie.InstallatieID.ToString().PadRight(15) +
+                    installatie.ContainerID.ToString().PadRight(15) +
+                    installatie.DeviceID.ToString().PadRight(15) +
+                    installatie.Van.ToString("dd/MM/yyyy").PadRight(10) +
+                    installatie.Tot.ToString("dd/MM/yyyy").PadRight(10) +
+                    installatie.EventID.ToString().PadRight(10) +
+                    installatie.Omschrijving.PadRight(15) +
+                    installatie.VerantwoordelijkeID.ToString());
             }
         }
         private void updateRightList()
