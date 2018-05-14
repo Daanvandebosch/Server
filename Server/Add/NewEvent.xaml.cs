@@ -36,7 +36,7 @@ namespace Server
 
         private void btnDone_Click(object sender, RoutedEventArgs e)
         {
-            string query = "INSERT INTO tblevents (Naam, Locatie, ContactpersoonID, VerantwoordelijkID)";
+            string query = "INSERT INTO tblevents (Naam, Locatie, ContactpersoonID, VerantwoordelijkeID)";
             string ContactpersoonID = getContactpersoonID();
             string VerantwoordelijkeID = getVerantwoordelijkeID();
 
