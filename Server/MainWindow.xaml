@@ -30,10 +30,13 @@
         <ListBox x:Name="ListData" HorizontalAlignment="Left" Height="456" Margin="492,84,0,0" VerticalAlignment="Top" Width="372" FontFamily="consolas"/>
         <Label Content="Installaties" HorizontalAlignment="Left" Margin="65,60,0,0" VerticalAlignment="Top"/>
         <Button x:Name="BtnAddInstallatie" Content="Add" HorizontalAlignment="Left" Margin="70,561,0,0" VerticalAlignment="Top" Width="120" Height="40" Click="BtnAddInstallatie_Click"/>
+        <Button x:Name="BtnDeleteInstallatie" Content="Delete" HorizontalAlignment="Left" Margin="323,561,0,0" VerticalAlignment="Top" Width="120" Height="40" Click="BtnDeleteInstallatie_Click"/>
         <Button x:Name="btnAdd" Content="Add" HorizontalAlignment="Left" Margin="492,561,0,0" VerticalAlignment="Top" Width="120" Height="40" Click="btnAdd_Click"/>
+        <Button x:Name="BtnDeleteData" Content="Delete" HorizontalAlignment="Left" Margin="744,561,0,0" VerticalAlignment="Top" Width="120" Height="40" Click="BtnDeleteData_Click"/>
         <Label Content="Connection database" HorizontalAlignment="Left" Margin="1102,54,0,0" VerticalAlignment="Top"/>
         <Ellipse x:Name="status" Fill="#ff0000" HorizontalAlignment="Left" Height="12" Margin="1242,60,0,0" Stroke="Black" VerticalAlignment="Top" Width="12"/>
         <Label Content="Add" HorizontalAlignment="Left" Margin="895,60,0,0" VerticalAlignment="Top"/>
-
+        <Button x:Name="btnTest" Content="Test" HorizontalAlignment="Left" Margin="900,255,0,0" VerticalAlignment="Top" Width="120" Height="40" Click="btnTest_Click"/>
+        
     </Grid>
 </Window>

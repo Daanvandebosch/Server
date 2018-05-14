@@ -36,7 +36,10 @@ namespace Server
             string USdateVan = DateTime.Parse(DatePickerVan.Text).ToString("yyyy-MM-dd HH:mm:ss");
             string USdateTot = DateTime.Parse(DatePickerTot.Text).ToString("yyyy-MM-dd HH:mm:ss");
 
-            query += " VALUES ('" + TextBoxPlaats.Text + "', '" + USdateVan + "', '" + USdateTot + "')";
+            query += " VALUES ('" +
+                TextBoxPlaats.Text + "', '" +
+                USdateVan + "', '" +
+                USdateTot + "')";
 
             Data d = new Data(connectionstring);
             d.DataInsert(query);

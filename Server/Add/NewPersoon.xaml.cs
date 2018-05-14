@@ -31,7 +31,11 @@ namespace Server
         {
             string query = "INSERT INTO tblpersoon (GSM, Functie, Voornaam, Achternaam)";
 
-            query += " VALUES ('" + TextBoxGSM.Text + "', '" + TextBoxFunctie.Text + "', '" + TextBoxVoornaam.Text + "', '" + TextBoxAchternaam.Text + "')";
+            query += " VALUES ('" +
+                TextBoxGSM.Text + "', '" +
+                TextBoxFunctie.Text + "', '" +
+                TextBoxVoornaam.Text + "', '" +
+                TextBoxAchternaam.Text + "')";
 
             Data d = new Data(connectionstring);
             d.DataInsert(query);

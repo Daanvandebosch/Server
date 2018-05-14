@@ -36,45 +36,45 @@ namespace Server
         public MainWindow()
         {
             InitializeComponent();
-            if (CheckConnectionDatabase())
-            {
-                UpdateLists();
-            }
-            tCheckConnectionDatabase.Interval = TimeSpan.FromMilliseconds(15000);
-            tCheckConnectionDatabase.Tick += tCheckConnectionDatabase_Tick;
-            tCheckConnectionDatabase.IsEnabled = true;
+            //if (CheckConnectionDatabase())
+            //{
+            //    UpdateLists();
+            //}
+            //tCheckConnectionDatabase.Interval = TimeSpan.FromMilliseconds(15000);
+            //tCheckConnectionDatabase.Tick += tCheckConnectionDatabase_Tick;
+            //tCheckConnectionDatabase.IsEnabled = true;
         }
 
-        private void tCheckConnectionDatabase_Tick(object sender, EventArgs e)
-        {
-            if (CheckConnectionDatabase())
-            {
-                UpdateLists();
-                updateRightList();
-            }
-        }
+        //private void tCheckConnectionDatabase_Tick(object sender, EventArgs e)
+        //{
+        //    if (CheckConnectionDatabase())
+        //    {
+        //        UpdateLists();
+        //        updateRightList();
+        //    }
+        //}
 
         /// <summary>
         /// Setup voor database connectie en mainpage
         /// </summary>
-        private bool CheckConnectionDatabase()
-        {
-            try
-            {
-                sql = new Data(myConnectionString);
-                sql.ConnectionTest();
-                Brush b = new SolidColorBrush(Colors.Green);
-                status.Fill = b;
-                return true;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-                Brush b = new SolidColorBrush(Colors.Red);
-                status.Fill = b;
-                return false;
-            }
-        }
+        //private bool CheckConnectionDatabase()
+        //{
+        //    try
+        //    {
+        //        sql = new Data(myConnectionString);
+        //        sql.ConnectionTest();
+        //        Brush b = new SolidColorBrush(Colors.Green);
+        //        status.Fill = b;
+        //        return true;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show(ex.Message);
+        //        Brush b = new SolidColorBrush(Colors.Red);
+        //        status.Fill = b;
+        //        return false;
+        //    }
+        //}
 
         /// <summary>
         /// Update alle listboxen
@@ -111,20 +111,6 @@ namespace Server
 
             switch (selectedAdd)
             {
-                case "Device":
-                    ListData.Items.Add(
-                        "DeviceID".PadRight(5) +
-                        "Van".PadRight(20) +
-                        "Tot");
-                    List <Device> deviceList = DeviceDB.GetDevice(myConnectionString);
-                    foreach (Device device in deviceList)
-                    {
-                        ListData.Items.Add(
-                            device.DeviceID.ToString().PadRight(5) +
-                            device.Van.ToString().PadRight(20) +
-                            device.Tot);
-                    }
-                    break;
                 case "Container":
                     ListData.Items.Add(
                         "ContainerID".PadRight(5) +
@@ -141,22 +127,18 @@ namespace Server
                             container.Tot);
                     }
                     break;
-                case "Persoon":
+                case "Device":
                     ListData.Items.Add(
-                        "PersoonID".PadRight(5) +
-                        "Functie".PadRight(10) +
-                        "Voornaam".PadRight(10) +
-                        "Achternaam".PadRight(15) +
-                        "GSM");
-                    List<Persoon> persoonList = PersoonDB.GetPeople(myConnectionString);
-                    foreach (Persoon persoon in persoonList)
+                        "DeviceID".PadRight(5) +
+                        "Van".PadRight(20) +
+                        "Tot");
+                    List <Device> deviceList = DeviceDB.GetDevice(myConnectionString);
+                    foreach (Device device in deviceList)
                     {
                         ListData.Items.Add(
-                            persoon.PersoonID.ToString().PadRight(5) +
-                            persoon.Functie.PadRight(10) +
-                            persoon.Voornaam.PadRight(10) +
-                            persoon.Achternaam.PadRight(15) +
-                            persoon.GSM);
+                            device.DeviceID.ToString().PadRight(5) +
+                            device.Van.ToString().PadRight(20) +
+                            device.Tot);
                     }
                     break;
                 case "Event":
@@ -177,6 +159,24 @@ namespace Server
                             events.VerantwoordelijkeID);
                     }
                     break;
+                case "Persoon":
+                    ListData.Items.Add(
+                        "PersoonID".PadRight(5) +
+                        "Functie".PadRight(10) +
+                        "Voornaam".PadRight(10) +
+                        "Achternaam".PadRight(15) +
+                        "GSM");
+                    List<Persoon> persoonList = PersoonDB.GetPeople(myConnectionString);
+                    foreach (Persoon persoon in persoonList)
+                    {
+                        ListData.Items.Add(
+                            persoon.PersoonID.ToString().PadRight(5) +
+                            persoon.Functie.PadRight(10) +
+                            persoon.Voornaam.PadRight(10) +
+                            persoon.Achternaam.PadRight(15) +
+                            persoon.GSM);
+                    }
+                    break;
             }
         }
 
@@ -184,12 +184,12 @@ namespace Server
         {
             switch (ComboAdd.SelectedValue.ToString())
             {
-                case "System.Windows.Controls.ComboBoxItem: Device":
-                    selectedAdd = "Device";
-                    updateRightList();
-                    break;
                 case "System.Windows.Controls.ComboBoxItem: Container":
                     selectedAdd = "Container";
+                    updateRightList();
+                    break;
+                case "System.Windows.Controls.ComboBoxItem: Device":
+                    selectedAdd = "Device";
                     updateRightList();
                     break;
                 case "System.Windows.Controls.ComboBoxItem: Event":
@@ -230,6 +230,39 @@ namespace Server
         {
             NewInstallatie i = new NewInstallatie(myConnectionString);
             i.Show();
+        }
+
+        public int tel = 0;
+        private void btnTest_Click(object sender, RoutedEventArgs e)
+        {
+            ListInstallaties.Items.Add("listinstallatie item " + tel);
+            ListData.Items.Add("ListData item " + tel);
+            tel++;
+        }
+
+        private void BtnDeleteInstallatie_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void BtnDeleteData_Click(object sender, RoutedEventArgs e)
+        {
+            string query = "DELETE FROM ";
+            switch (selectedAdd)
+            {
+                case "Container":
+                    query += "tblcontainer";
+                    break;
+                case "Device":
+                    query += "tbldevice";
+                    break;
+                case "Event":
+                    query += "tblevents";
+                    break;
+                case "Persoon":
+                    query += "tblpersoon";
+                    break;
+            }
         }
     }
 }
