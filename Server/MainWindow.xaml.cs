@@ -250,7 +250,7 @@ namespace Server
         private void BtnDeleteData_Click(object sender, RoutedEventArgs e)
         {
             string query = "DELETE FROM ";
-            int ID = 0;
+            string ID = ListData.SelectedValue.ToString().Substring(0, 4);
             switch (selectedAdd)
             {
                 case "Container":
