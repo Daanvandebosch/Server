@@ -47,11 +47,7 @@ namespace Server
 
         private void tCheckConnectionDatabase_Tick(object sender, EventArgs e)
         {
-            if (CheckConnectionDatabase())
-            {
-                UpdateLists();
-                updateRightList();
-            }
+            CheckConnectionDatabase();
         }
 
         /// <summary>
@@ -114,7 +110,7 @@ namespace Server
                 case "Container":
                     ListData.Items.Add(
                         "ContainerID".PadRight(13) +
-                        "Plaats".PadRight(10) +
+                        "Plaats".PadRight(15) +
                         "Van".PadRight(20) +
                         "Tot");
                     List<Container> containerList = ContainerDB.GetContainers(myConnectionString);
@@ -122,7 +118,7 @@ namespace Server
                     {
                         ListData.Items.Add(
                             container.ContainerID.ToString().PadRight(13) +
-                            container.Plaats.PadRight(10) +
+                            container.Plaats.PadRight(15) +
                             container.Van.ToString("dd/MM/yyyy").PadRight(20) +
                             container.Tot.ToString("dd/MM/yyyy"));
                     }
@@ -144,18 +140,18 @@ namespace Server
                 case "Event":
                     ListData.Items.Add(
                         "ContactpersoonID".PadRight(18) +
-                        "Naam".PadRight(10) +
+                        "Naam".PadRight(15) +
                         "Locatie".PadRight(10) +
-                        "ContactpersoonID".PadRight(5) +
+                        "ContactpersoonID".PadRight(18) +
                         "VerantwoordelijkeID");
                     List<Events> eventsList = EventsDB.GetEvents(myConnectionString);
                     foreach (Events events in eventsList)
                     {
                         ListData.Items.Add(
                             events.ContactpersoonID.ToString().PadRight(18) +
-                            events.Naam.PadRight(10) +
+                            events.Naam.PadRight(15) +
                             events.Locatie.PadRight(10) +
-                            events.ContactpersoonID.ToString().PadRight(5) +
+                            events.ContactpersoonID.ToString().PadRight(18) +
                             events.VerantwoordelijkeID);
                     }
                     break;
@@ -273,6 +269,12 @@ namespace Server
 
             Data d = new Data(myConnectionString);
             d.DataRemove(query);
+        }
+
+        private void btnRefresh_Click(object sender, RoutedEventArgs e)
+        {
+            UpdateLists();
+            updateRightList();
         }
     }
 }

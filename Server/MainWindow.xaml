@@ -10,16 +10,7 @@
 
 
     <Grid>
-        <DockPanel >
-            <Menu DockPanel.Dock="Top"  Height="20" Background="#FFDFDFDF">
-                <MenuItem Header="_Select">
-                    <MenuItem Header="_Test"/>
-                    <Separator />
-                    <MenuItem Header="_Exit" />
-                </MenuItem>
-            </Menu>
-            <TextBox AcceptsReturn="True" Visibility="Hidden" />
-        </DockPanel>
+
         <ListBox x:Name="ListInstallaties" HorizontalAlignment="Left" Height="456" Margin="70,84,0,0" VerticalAlignment="Top" Width="774"/>
         <ComboBox x:Name="ComboAdd" HorizontalAlignment="Left" Margin="1436,113,0,0" VerticalAlignment="Top" Width="132" SelectionChanged="ComboAdd_SelectionChanged">
             <ComboBoxItem Content="Container"/>
@@ -36,6 +27,7 @@
         <Label Content="Connection database" HorizontalAlignment="Left" Margin="1424,29,0,0" VerticalAlignment="Top" Width="138"/>
         <Ellipse x:Name="status" Fill="#ff0000" HorizontalAlignment="Left" Height="12" Margin="1567,35,0,0" Stroke="Black" VerticalAlignment="Top" Width="12"/>
         <Label Content="Add" HorizontalAlignment="Left" Margin="1436,84,0,0" VerticalAlignment="Top" Width="32"/>
+        <Button x:Name="btnRefresh" Content="Refresh" HorizontalAlignment="Left" Margin="1404,154,0,0" VerticalAlignment="Top" Width="175" Height="145" Click="btnRefresh_Click"/>
 
     </Grid>
 </Window>
