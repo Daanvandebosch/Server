@@ -27,7 +27,7 @@ namespace Server
     /// </summary>
     public partial class MainWindow : Window
     {
-        private string myConnectionString = string.Format("datasource ={0}; port=3306;username= {1};password= {2};database={3}", "localhost", "root", "bobeke", "mydb");
+        private string myConnectionString = string.Format("datasource ={0}; port=3306;username= {1};password= {2};database={3}", "10.11.51.246", "root", "bobeke", "mydb");
         Data sql;
         private DispatcherTimer tCheckConnectionDatabase = new DispatcherTimer();
         private string selectedAdd = "";
@@ -36,45 +36,45 @@ namespace Server
         public MainWindow()
         {
             InitializeComponent();
-            //if (CheckConnectionDatabase())
-            //{
-            //    UpdateLists();
-            //}
-            //tCheckConnectionDatabase.Interval = TimeSpan.FromMilliseconds(15000);
-            //tCheckConnectionDatabase.Tick += tCheckConnectionDatabase_Tick;
-            //tCheckConnectionDatabase.IsEnabled = true;
+            if (CheckConnectionDatabase())
+            {
+                UpdateLists();
+            }
+            tCheckConnectionDatabase.Interval = TimeSpan.FromMilliseconds(15000);
+            tCheckConnectionDatabase.Tick += tCheckConnectionDatabase_Tick;
+            tCheckConnectionDatabase.IsEnabled = true;
         }
 
-        //private void tCheckConnectionDatabase_Tick(object sender, EventArgs e)
-        //{
-        //    if (CheckConnectionDatabase())
-        //    {
-        //        UpdateLists();
-        //        updateRightList();
-        //    }
-        //}
+        private void tCheckConnectionDatabase_Tick(object sender, EventArgs e)
+        {
+            if (CheckConnectionDatabase())
+            {
+                UpdateLists();
+                updateRightList();
+            }
+        }
 
         /// <summary>
         /// Setup voor database connectie en mainpage
         /// </summary>
-        //private bool CheckConnectionDatabase()
-        //{
-        //    try
-        //    {
-        //        sql = new Data(myConnectionString);
-        //        sql.ConnectionTest();
-        //        Brush b = new SolidColorBrush(Colors.Green);
-        //        status.Fill = b;
-        //        return true;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show(ex.Message);
-        //        Brush b = new SolidColorBrush(Colors.Red);
-        //        status.Fill = b;
-        //        return false;
-        //    }
-        //}
+        private bool CheckConnectionDatabase()
+        {
+            try
+            {
+                sql = new Data(myConnectionString);
+                sql.ConnectionTest();
+                Brush b = new SolidColorBrush(Colors.Green);
+                status.Fill = b;
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                Brush b = new SolidColorBrush(Colors.Red);
+                status.Fill = b;
+                return false;
+            }
+        }
 
         /// <summary>
         /// Update alle listboxen
@@ -232,14 +232,6 @@ namespace Server
             i.Show();
         }
 
-        public int tel = 0;
-        private void btnTest_Click(object sender, RoutedEventArgs e)
-        {
-            ListInstallaties.Items.Add("listinstallatie item " + tel);
-            ListData.Items.Add("ListData item " + tel);
-            tel++;
-        }
-
         private void BtnDeleteInstallatie_Click(object sender, RoutedEventArgs e)
         {
             
@@ -251,7 +243,9 @@ namespace Server
             switch (selectedAdd)
             {
                 case "Container":
-                    query += "tblcontainer";
+                    query += "tblcontainer " +
+                        "WHERE ContainerID = "
+                        ;
                     break;
                 case "Device":
                     query += "tbldevice";
