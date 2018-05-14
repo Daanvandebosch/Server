@@ -283,5 +283,21 @@ namespace Server
             UpdateLists();
             updateRightList();
         }
+
+        private void ListInstallaties_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (ListInstallaties.SelectedIndex == 0)
+            {
+                ListInstallaties.SelectedIndex = -1;
+            }
+        }
+
+        private void ListData_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (ListData.SelectedIndex == 0)
+            {
+                ListData.SelectedIndex = -1;
+            }
+        }
     }
 }

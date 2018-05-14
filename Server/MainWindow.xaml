@@ -11,14 +11,14 @@
 
     <Grid>
 
-        <ListBox x:Name="ListInstallaties" HorizontalAlignment="Left" Height="456" Margin="70,84,0,0" VerticalAlignment="Top" Width="774"/>
+        <ListBox x:Name="ListInstallaties" HorizontalAlignment="Left" Height="456" Margin="70,84,0,0" VerticalAlignment="Top" Width="774" SelectionChanged="ListInstallaties_SelectionChanged"/>
         <ComboBox x:Name="ComboAdd" HorizontalAlignment="Left" Margin="1436,113,0,0" VerticalAlignment="Top" Width="132" SelectionChanged="ComboAdd_SelectionChanged">
             <ComboBoxItem Content="Container"/>
             <ComboBoxItem Content="Device"/>
             <ComboBoxItem Content="Event"/>
             <ComboBoxItem Content="Persoon"/>
         </ComboBox>
-        <ListBox x:Name="ListData" HorizontalAlignment="Left" Height="456" Margin="871,84,0,0" VerticalAlignment="Top" Width="503" FontFamily="consolas"/>
+        <ListBox x:Name="ListData" HorizontalAlignment="Left" Height="456" Margin="871,84,0,0" VerticalAlignment="Top" Width="503" FontFamily="consolas" SelectionChanged="ListData_SelectionChanged"/>
         <Label Content="Installaties" HorizontalAlignment="Left" Margin="65,60,0,0" VerticalAlignment="Top"/>
         <Button x:Name="BtnAddInstallatie" Content="Add" HorizontalAlignment="Left" Margin="70,561,0,0" VerticalAlignment="Top" Width="120" Height="54" Click="BtnAddInstallatie_Click"/>
         <Button x:Name="BtnDeleteInstallatie" Content="Delete" HorizontalAlignment="Left" Margin="724,561,0,0" VerticalAlignment="Top" Width="120" Height="54" Click="BtnDeleteInstallatie_Click"/>
