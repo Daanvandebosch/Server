@@ -84,10 +84,10 @@ namespace Server
             ListInstallaties.Items.Clear();
             ListInstallaties.Items.Add(
                 "InstallatieID".PadRight(15) +
-                "ContainerID".PadRight(15) +
-                "DeviceID".PadRight(15) +
-                "Van".PadRight(10) +
-                "Tot".PadRight(10) +
+                "ContainerID".PadRight(13) +
+                "DeviceID".PadRight(11) +
+                "Van".PadRight(15) +
+                "Tot".PadRight(15) +
                 "EventID".PadRight(10) +
                 "Omschrijving".PadRight(15) +
                 "VerantwoordelijkeID");
@@ -96,10 +96,10 @@ namespace Server
             {
                 ListInstallaties.Items.Add(
                     installatie.InstallatieID.ToString().PadRight(15) +
-                    installatie.ContainerID.ToString().PadRight(15) +
-                    installatie.DeviceID.ToString().PadRight(15) +
-                    installatie.Van.ToString("dd/MM/yyyy").PadRight(10) +
-                    installatie.Tot.ToString("dd/MM/yyyy").PadRight(10) +
+                    installatie.ContainerID.ToString().PadRight(13) +
+                    installatie.DeviceID.ToString().PadRight(11) +
+                    installatie.Van.ToString("dd/MM/yyyy").PadRight(15) +
+                    installatie.Tot.ToString("dd/MM/yyyy").PadRight(15) +
                     installatie.EventID.ToString().PadRight(10) +
                     installatie.Omschrijving.PadRight(15) +
                     installatie.VerantwoordelijkeID.ToString());
@@ -113,7 +113,7 @@ namespace Server
             {
                 case "Container":
                     ListData.Items.Add(
-                        "ContainerID".PadRight(12) +
+                        "ContainerID".PadRight(13) +
                         "Plaats".PadRight(10) +
                         "Van".PadRight(20) +
                         "Tot");
@@ -121,10 +121,10 @@ namespace Server
                     foreach (Container container in containerList)
                     {
                         ListData.Items.Add(
-                            container.ContainerID.ToString().PadRight(12) +
+                            container.ContainerID.ToString().PadRight(13) +
                             container.Plaats.PadRight(10) +
-                            container.Van.ToString().PadRight(20) +
-                            container.Tot);
+                            container.Van.ToString("dd/MM/yyyy").PadRight(20) +
+                            container.Tot.ToString("dd/MM/yyyy"));
                     }
                     break;
                 case "Device":
