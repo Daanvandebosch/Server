@@ -256,15 +256,15 @@ namespace Server
                             "WHERE ContainerID = " + ID;
                         break;
                     case "Device":
-                        query += "tbldevice" +
+                        query += "tbldevice " +
                         "WHERE DeviceID = " + ID;
                         break;
                     case "Event":
-                        query += "tblevents" +
+                        query += "tblevents " +
                         "WHERE EventID = " + ID;
                         break;
                     case "Persoon":
-                        query += "tblpersoon" +
+                        query += "tblpersoon " +
                         "WHERE PersoonID = " + ID;
                         break;
                 }
