@@ -240,23 +240,29 @@ namespace Server
         private void BtnDeleteData_Click(object sender, RoutedEventArgs e)
         {
             string query = "DELETE FROM ";
+            int ID = 0;
             switch (selectedAdd)
             {
                 case "Container":
                     query += "tblcontainer " +
-                        "WHERE ContainerID = "
-                        ;
+                        "WHERE ContainerID = " + ID;
                     break;
                 case "Device":
-                    query += "tbldevice";
+                    query += "tbldevice" +
+                    "WHERE DeviceID = " + ID;
                     break;
                 case "Event":
-                    query += "tblevents";
+                    query += "tblevents" +
+                    "WHERE EventID = " + ID;
                     break;
                 case "Persoon":
-                    query += "tblpersoon";
+                    query += "tblpersoon" +
+                    "WHERE PersoonID = " + ID;
                     break;
             }
+
+            Data d = new Data(myConnectionString);
+            d.DataRemove(query);
         }
     }
 }
