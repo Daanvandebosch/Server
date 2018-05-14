@@ -272,9 +272,9 @@ namespace Server
                 Data d = new Data(myConnectionString);
                 d.DataRemove(query);
             }
-            catch
+            catch (Exception msg)
             {
-
+                MessageBox.Show(msg.Message);
             }
         }
 
