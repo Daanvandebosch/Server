@@ -113,7 +113,7 @@ namespace Server
             {
                 case "Container":
                     ListData.Items.Add(
-                        "ContainerID".PadRight(10) +
+                        "ContainerID".PadRight(12) +
                         "Plaats".PadRight(10) +
                         "Van".PadRight(20) +
                         "Tot");
@@ -121,7 +121,7 @@ namespace Server
                     foreach (Container container in containerList)
                     {
                         ListData.Items.Add(
-                            container.ContainerID.ToString().PadRight(5) +
+                            container.ContainerID.ToString().PadRight(12) +
                             container.Plaats.PadRight(10) +
                             container.Van.ToString().PadRight(20) +
                             container.Tot);
@@ -129,21 +129,21 @@ namespace Server
                     break;
                 case "Device":
                     ListData.Items.Add(
-                        "DeviceID".PadRight(5) +
+                        "DeviceID".PadRight(9) +
                         "Van".PadRight(20) +
                         "Tot");
                     List <Device> deviceList = DeviceDB.GetDevice(myConnectionString);
                     foreach (Device device in deviceList)
                     {
                         ListData.Items.Add(
-                            device.DeviceID.ToString().PadRight(5) +
+                            device.DeviceID.ToString().PadRight(9) +
                             device.Van.ToString().PadRight(20) +
                             device.Tot);
                     }
                     break;
                 case "Event":
                     ListData.Items.Add(
-                        "ContactpersoonID".PadRight(5) +
+                        "ContactpersoonID".PadRight(17) +
                         "Naam".PadRight(10) +
                         "Locatie".PadRight(10) +
                         "ContactpersoonID".PadRight(5) +
@@ -152,7 +152,7 @@ namespace Server
                     foreach (Events events in eventsList)
                     {
                         ListData.Items.Add(
-                            events.ContactpersoonID.ToString().PadRight(5) +
+                            events.ContactpersoonID.ToString().PadRight(17) +
                             events.Naam.PadRight(10) +
                             events.Locatie.PadRight(10) +
                             events.ContactpersoonID.ToString().PadRight(5) +
@@ -161,7 +161,7 @@ namespace Server
                     break;
                 case "Persoon":
                     ListData.Items.Add(
-                        "PersoonID".PadRight(5) +
+                        "PersoonID".PadRight(10) +
                         "Functie".PadRight(10) +
                         "Voornaam".PadRight(10) +
                         "Achternaam".PadRight(15) +
@@ -170,7 +170,7 @@ namespace Server
                     foreach (Persoon persoon in persoonList)
                     {
                         ListData.Items.Add(
-                            persoon.PersoonID.ToString().PadRight(5) +
+                            persoon.PersoonID.ToString().PadRight(10) +
                             persoon.Functie.PadRight(10) +
                             persoon.Voornaam.PadRight(10) +
                             persoon.Achternaam.PadRight(15) +
