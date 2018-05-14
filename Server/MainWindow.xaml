@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Server"
         mc:Ignorable="d"
-        Title="MainWindow" Height="720" Width="1594.889"
+        Title="MainWindow" Height="720" Width="1608.889"
         ResizeMode="NoResize" FontFamily="Consolas">
 
 
@@ -20,7 +20,7 @@
             </Menu>
             <TextBox AcceptsReturn="True" Visibility="Hidden" />
         </DockPanel>
-        <ListBox x:Name="ListInstallaties" HorizontalAlignment="Left" Height="456" Margin="70,84,0,0" VerticalAlignment="Top" Width="757"/>
+        <ListBox x:Name="ListInstallaties" HorizontalAlignment="Left" Height="456" Margin="70,84,0,0" VerticalAlignment="Top" Width="774"/>
         <ComboBox x:Name="ComboAdd" HorizontalAlignment="Left" Margin="1436,113,0,0" VerticalAlignment="Top" Width="132" SelectionChanged="ComboAdd_SelectionChanged">
             <ComboBoxItem Content="Container"/>
             <ComboBoxItem Content="Device"/>
@@ -30,9 +30,9 @@
         <ListBox x:Name="ListData" HorizontalAlignment="Left" Height="456" Margin="871,84,0,0" VerticalAlignment="Top" Width="503" FontFamily="consolas"/>
         <Label Content="Installaties" HorizontalAlignment="Left" Margin="65,60,0,0" VerticalAlignment="Top"/>
         <Button x:Name="BtnAddInstallatie" Content="Add" HorizontalAlignment="Left" Margin="70,561,0,0" VerticalAlignment="Top" Width="120" Height="54" Click="BtnAddInstallatie_Click"/>
-        <Button x:Name="BtnDeleteInstallatie" Content="Delete" HorizontalAlignment="Left" Margin="707,561,0,0" VerticalAlignment="Top" Width="120" Height="54" Click="BtnDeleteInstallatie_Click"/>
+        <Button x:Name="BtnDeleteInstallatie" Content="Delete" HorizontalAlignment="Left" Margin="724,561,0,0" VerticalAlignment="Top" Width="120" Height="54" Click="BtnDeleteInstallatie_Click"/>
         <Button x:Name="btnAdd" Content="Add" HorizontalAlignment="Left" Margin="871,561,0,0" VerticalAlignment="Top" Width="120" Height="54" Click="btnAdd_Click"/>
-        <Button x:Name="BtnDeleteData" Content="Delete" HorizontalAlignment="Left" Margin="1123,561,0,0" VerticalAlignment="Top" Width="120" Height="54" Click="BtnDeleteData_Click"/>
+        <Button x:Name="BtnDeleteData" Content="Delete" HorizontalAlignment="Left" Margin="1254,561,0,0" VerticalAlignment="Top" Width="120" Height="54" Click="BtnDeleteData_Click"/>
         <Label Content="Connection database" HorizontalAlignment="Left" Margin="1424,29,0,0" VerticalAlignment="Top" Width="138"/>
         <Ellipse x:Name="status" Fill="#ff0000" HorizontalAlignment="Left" Height="12" Margin="1567,35,0,0" Stroke="Black" VerticalAlignment="Top" Width="12"/>
         <Label Content="Add" HorizontalAlignment="Left" Margin="1436,84,0,0" VerticalAlignment="Top" Width="32"/>

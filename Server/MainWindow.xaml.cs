@@ -234,7 +234,17 @@ namespace Server
 
         private void BtnDeleteInstallatie_Click(object sender, RoutedEventArgs e)
         {
-            
+            try
+            {
+                string query = "DELETE FROM tblinstallatie WHERE InstallatieID = ";
+                query += ListInstallaties.SelectedValue.ToString().Substring(0, 4);
+                Data d = new Data(myConnectionString);
+                d.DataRemove(query);
+            }
+            catch
+            {
+
+            }
         }
 
         private void BtnDeleteData_Click(object sender, RoutedEventArgs e)
