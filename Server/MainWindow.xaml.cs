@@ -27,7 +27,7 @@ namespace Server
     /// </summary>
     public partial class MainWindow : Window
     {
-        private string myConnectionString = string.Format("datasource ={0}; port=3306;username= {1};password= {2};database={3}", "localhost", "root", "bobeke", "mydb");
+        private string myConnectionString = string.Format("datasource ={0}; port=3306;username= {1};password= {2};database={3}", "10.11.51.246", "root", "bobeke", "mydb");
         Data sql;
         private DispatcherTimer tCheckConnectionDatabase = new DispatcherTimer();
         private string selectedAdd = "";
@@ -232,14 +232,6 @@ namespace Server
             i.Show();
         }
 
-        public int tel = 0;
-        private void btnTest_Click(object sender, RoutedEventArgs e)
-        {
-            ListInstallaties.Items.Add("listinstallatie item " + tel);
-            ListData.Items.Add("ListData item " + tel);
-            tel++;
-        }
-
         private void BtnDeleteInstallatie_Click(object sender, RoutedEventArgs e)
         {
             
@@ -251,7 +243,9 @@ namespace Server
             switch (selectedAdd)
             {
                 case "Container":
-                    query += "tblcontainer";
+                    query += "tblcontainer " +
+                        "WHERE ContainerID = "
+                        ;
                     break;
                 case "Device":
                     query += "tbldevice";

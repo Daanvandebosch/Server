@@ -28,6 +28,7 @@ namespace Server
         {
             this.connectionstring = connectionstring;
             InitializeComponent();
+            LoadItemsCombobox();
         }
 
         private void btnDone_Click(object sender, RoutedEventArgs e)
