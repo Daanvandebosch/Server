@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Server"
         mc:Ignorable="d"
         Title="MainWindow" Height="720" Width="1608.889"
-        ResizeMode="NoResize" FontFamily="Consolas">
+        ResizeMode="NoResize" FontFamily="Consolas" Activated="Window_Activated">
 
 
     <Grid>
