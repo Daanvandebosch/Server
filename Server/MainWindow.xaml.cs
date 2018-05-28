@@ -27,7 +27,8 @@ namespace Server
     /// </summary>
     public partial class MainWindow : Window
     {
-        private string myConnectionString = string.Format("datasource ={0}; port=3306;username= {1};password= {2};database={3}", "10.11.51.118", "root", "bobeke", "mydb");
+        private string myConnectionString = string.Format("datasource ={0}; port=3306;username= {1};password= {2};database={3}", "10.11.51.246", "root", "bobeke", "mydb");
+        //private string myConnectionString = string.Format("datasource ={0}; port=3306;username= {1};password= {2};database={3}", "localhost", "embedded", "", "embeddedwebcontrollers");
         Data sql;
         private DispatcherTimer tCheckConnectionDatabase = new DispatcherTimer();
         private string selectedAdd = "";
@@ -273,9 +274,9 @@ namespace Server
                 Data d = new Data(myConnectionString);
                 d.DataRemove(query);
             }
-            catch (Exception msg)
+            catch
             {
-                MessageBox.Show(msg.Message);
+
             }
         }
 
