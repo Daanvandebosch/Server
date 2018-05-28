@@ -236,6 +236,7 @@ namespace Server
                 query += ListInstallaties.SelectedValue.ToString().Substring(0, 4);
                 Data d = new Data(myConnectionString);
                 d.DataRemove(query);
+                UpdateLists();
             }
             catch
             {
