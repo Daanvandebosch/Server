@@ -36,20 +36,37 @@ namespace Server
 
         private void btnDone_Click(object sender, RoutedEventArgs e)
         {
-            string query = "INSERT INTO tblevents (Naam, Locatie, ContactpersoonID, VerantwoordelijkeID)";
-            string ContactpersoonID = getContactpersoonID();
-            string VerantwoordelijkeID = getVerantwoordelijkeID();
+            try
+            {
+                string query = "INSERT INTO tblevents (Naam, Locatie, ContactpersoonID, VerantwoordelijkeID)";
+                string ContactpersoonID = getContactpersoonID();
+                string VerantwoordelijkeID = getVerantwoordelijkeID();
 
-            query += " VALUES ('"
-                + TextBoxNaam.Text + "', '"
-                + TextBoxLocatie.Text + "', '"
-                + ContactpersoonID + "', '"
-                + VerantwoordelijkeID + "')";
+                if (TextBoxNaam.Text == "")
+                {
+                    throw new Exception("Vul de naam in.");
+                }
+                if (TextBoxLocatie.Text == "")
+                {
+                    throw new Exception("Vul de locatie in.");
+                }
 
-            Data d = new Data(connectionstring);
-            d.DataInsert(query);
+                query += " VALUES ('"
+                    + TextBoxNaam.Text + "', '"
+                    + TextBoxLocatie.Text + "', '"
+                    + ContactpersoonID + "', '"
+                    + VerantwoordelijkeID + "')";
 
-            this.Close();
+                Data d = new Data(connectionstring);
+                d.DataInsert(query);
+
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            
         }
 
         private void LoadItemsCombobox()

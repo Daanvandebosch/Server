@@ -31,20 +31,32 @@ namespace Server
 
         private void btnDone_Click(object sender, RoutedEventArgs e)
         {
-            string query = "INSERT INTO tblcontainer (Plaats, Van, Tot)";
+            try
+            {
+                if (TextBoxPlaats.Text == "")
+                {
+                    throw new Exception("Plaats nog niet ingegeven");
+                }
+                string query = "INSERT INTO tblcontainer (Plaats, Van, Tot)";
 
-            string USdateVan = DateTime.Parse(DatePickerVan.Text).ToString("yyyy-MM-dd HH:mm:ss");
-            string USdateTot = DateTime.Parse(DatePickerTot.Text).ToString("yyyy-MM-dd HH:mm:ss");
+                string USdateVan = DateTime.Parse(DatePickerVan.Text).ToString("yyyy-MM-dd HH:mm:ss");
+                string USdateTot = DateTime.Parse(DatePickerTot.Text).ToString("yyyy-MM-dd HH:mm:ss");
 
-            query += " VALUES ('" +
-                TextBoxPlaats.Text + "', '" +
-                USdateVan + "', '" +
-                USdateTot + "')";
+                query += " VALUES ('" +
+                    TextBoxPlaats.Text + "', '" +
+                    USdateVan + "', '" +
+                    USdateTot + "')";
 
-            Data d = new Data(connectionstring);
-            d.DataInsert(query);
+                Data d = new Data(connectionstring);
+                d.DataInsert(query);
 
-            this.Close();
+                this.Close();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            
         }
     }
 }

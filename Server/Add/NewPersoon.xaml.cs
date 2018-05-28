@@ -29,18 +29,43 @@ namespace Server
 
         private void btnDone_Click(object sender, RoutedEventArgs e)
         {
-            string query = "INSERT INTO tblpersoon (GSM, Functie, Voornaam, Achternaam)";
+            try
+            {
+                string query = "INSERT INTO tblpersoon (GSM, Functie, Voornaam, Achternaam)";
+                if (TextBoxAchternaam.Text == "")
+                {
+                    throw new Exception("Je moet de achternaam invullen.");
+                }
+                if (TextBoxFunctie.Text == "")
+                {
+                    throw new Exception("Je moet de functie invullen.");
+                }
+                if (TextBoxGSM.Text == "")
+                {
+                    throw new Exception("Je moet het gsm nummer invullen");
+                }
+                if (TextBoxVoornaam.Text == "")
+                {
+                    throw new Exception("Je moet de voornaam invullen");
+                }
 
-            query += " VALUES ('" +
-                TextBoxGSM.Text + "', '" +
-                TextBoxFunctie.Text + "', '" +
-                TextBoxVoornaam.Text + "', '" +
-                TextBoxAchternaam.Text + "')";
 
-            Data d = new Data(connectionstring);
-            d.DataInsert(query);
+                query += " VALUES ('" +
+                    TextBoxGSM.Text + "', '" +
+                    TextBoxFunctie.Text + "', '" +
+                    TextBoxVoornaam.Text + "', '" +
+                    TextBoxAchternaam.Text + "')";
 
-            this.Close();
+                Data d = new Data(connectionstring);
+                d.DataInsert(query);
+
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            
         }
     }
 }

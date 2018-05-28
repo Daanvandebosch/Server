@@ -29,33 +29,45 @@ namespace Server
             this.connectionstring = connectionstring;
             InitializeComponent();
             LoadItemsCombobox();
+            ComboAddContainerID.SelectedIndex = 0;
+            ComboAddDeviceID.SelectedIndex = 0;
+            ComboAddEventID.SelectedIndex = 0;
+            ComboAddVerantwoordelijkeID.SelectedIndex = 0;
         }
 
         private void btnDone_Click(object sender, RoutedEventArgs e)
         {
-            string query = "INSERT INTO tblinstallatie (ContainerID, DeviceID, Van, Tot, EventID, Omschrijving, VerantwoordelijkeID)";
+            try
+            {
+                string query = "INSERT INTO tblinstallatie (ContainerID, DeviceID, Van, Tot, EventID, Omschrijving, VerantwoordelijkeID)";
 
-            string ContainerID = getContainerID();
-            string DeviceID = getDeviceID();
-            string USdateVan = DateTime.Parse(DatePickerVan.Text).ToString("yyyy-MM-dd HH:mm:ss");
-            string USdateTot = DateTime.Parse(DatePickerTot.Text).ToString("yyyy-MM-dd HH:mm:ss");
-            string EventID = getEventID();
-            string Omschrijving = TextBoxOmschrijving.Text;
-            string VerantwoordelijkeID = getVerantwoordelijkeID();
+                string ContainerID = getContainerID();
+                string DeviceID = getDeviceID();
+                string USdateVan = DateTime.Parse(DatePickerVan.Text).ToString("yyyy-MM-dd HH:mm:ss");
+                string USdateTot = DateTime.Parse(DatePickerTot.Text).ToString("yyyy-MM-dd HH:mm:ss");
+                string EventID = getEventID();
+                string Omschrijving = TextBoxOmschrijving.Text;
+                string VerantwoordelijkeID = getVerantwoordelijkeID();
 
-            query += " VALUES ('"
-                + ContainerID + "', '"
-                + DeviceID + "', '"
-                + USdateVan + "', '"
-                + USdateTot + "', '"
-                + EventID + "', '"
-                + Omschrijving + "', '"
-                + VerantwoordelijkeID + "')";
+                query += " VALUES ('"
+                    + ContainerID + "', '"
+                    + DeviceID + "', '"
+                    + USdateVan + "', '"
+                    + USdateTot + "', '"
+                    + EventID + "', '"
+                    + Omschrijving + "', '"
+                    + VerantwoordelijkeID + "')";
 
-            Data d = new Data(connectionstring);
-            d.DataInsert(query);
+                Data d = new Data(connectionstring);
+                d.DataInsert(query);
 
-            this.Close();
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            
         }
 
         private string getVerantwoordelijkeID()
