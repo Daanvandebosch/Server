@@ -28,6 +28,7 @@ namespace Server
     public partial class MainWindow : Window
     {
         private string myConnectionString = string.Format("datasource ={0}; port=3306;username= {1};password= {2};database={3}", "10.11.51.246", "root", "bobeke", "mydb");
+        //private string myConnectionString = string.Format("datasource ={0}; port=3306;username= {1};password= {2};database={3}", "localhost", "embedded", "", "embeddedwebcontrollers");
         Data sql;
         private DispatcherTimer tCheckConnectionDatabase = new DispatcherTimer();
         private string selectedAdd = "";
@@ -256,15 +257,15 @@ namespace Server
                             "WHERE ContainerID = " + ID;
                         break;
                     case "Device":
-                        query += "tbldevice" +
+                        query += "tbldevice " +
                         "WHERE DeviceID = " + ID;
                         break;
                     case "Event":
-                        query += "tblevents" +
+                        query += "tblevents " +
                         "WHERE EventID = " + ID;
                         break;
                     case "Persoon":
-                        query += "tblpersoon" +
+                        query += "tblpersoon " +
                         "WHERE PersoonID = " + ID;
                         break;
                 }
