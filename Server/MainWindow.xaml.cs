@@ -27,7 +27,7 @@ namespace Server
     /// </summary>
     public partial class MainWindow : Window
     {
-        private string myConnectionString = string.Format("datasource ={0}; port=3306;username= {1};password= {2};database={3}", "10.11.51.118", "root", "bobeke", "mydb");
+        private string myConnectionString = string.Format("datasource ={0}; port=3306;username= {1};password= {2};database={3}", "localhost", "root", "bobeke", "mydb");
         Data sql;
         private DispatcherTimer tCheckConnectionDatabase = new DispatcherTimer();
         private string selectedAdd = "";
@@ -43,6 +43,7 @@ namespace Server
             tCheckConnectionDatabase.Interval = TimeSpan.FromMilliseconds(15000);
             tCheckConnectionDatabase.Tick += tCheckConnectionDatabase_Tick;
             tCheckConnectionDatabase.IsEnabled = true;
+
         }
 
         private void tCheckConnectionDatabase_Tick(object sender, EventArgs e)
@@ -306,6 +307,12 @@ namespace Server
         {
             UpdateLists();
             updateRightList();
+        }
+
+        private void btnLog_Click(object sender, RoutedEventArgs e)
+        {
+            Add.Log l = new Add.Log(myConnectionString);
+            l.Show();
         }
     }
 }
