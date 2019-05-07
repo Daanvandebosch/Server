@@ -27,7 +27,7 @@ namespace Server
     /// </summary>
     public partial class MainWindow : Window
     {
-        private string myConnectionString = string.Format("datasource ={0}; port=3306;username= {1};password= {2};database={3}", "10.11.51.152", "root", "bobeke", "mydb");
+        private string myConnectionString = string.Format("datasource ={0}; port=3306;username= {1};password= {2};database={3}", "x.x.x.x", "root", "*****", "mydb");
         Data sql;
         private DispatcherTimer tCheckConnectionDatabase = new DispatcherTimer();
         private string selectedAdd = "";
